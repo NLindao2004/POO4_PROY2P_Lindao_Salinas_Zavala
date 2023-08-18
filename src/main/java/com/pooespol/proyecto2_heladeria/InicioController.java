@@ -51,50 +51,56 @@ public class InicioController implements Initializable {
         // TODO
         mostrarImg();
     }    
-    
-    public void mostrarImg(){
-        try(FileInputStream  input = new FileInputStream (Principal.path+"inicio3.jpg")){
-            Image image = new Image(input,730,530,false,false);
-            imgInicio.setImage(image);
-        }catch(FileNotFoundException fn){
-            
-        }catch (Exception ex) {
-            
-        }
+        
+    public void mostrarImg(){        
+            try(FileInputStream  input = new FileInputStream (Principal.path+"inicio3.jpg")){
+                Image image = new Image(input,730,530,false,false);
+                imgInicio.setImage(image);
+            }catch(FileNotFoundException fn){
+
+            }catch (Exception ex) {
+
+            }
     }
+    
 
     @FXML
     private void login(){
-        Platform.runLater(new Runnable(){
-        public void run(){
-                ArrayList<Usuario> lista = Usuario.cargarUsuarios();
-            if (("".equals(user.getText())) || ("".equals(password.getText()))) {
-                message.setText("LLene los campos vacios");
-            }else {
-                for (Usuario u : lista) {
-                    if (u.getUsuario().equals(user.getText()) && u.getContrasenia().equals(password.getText())) {
-                        try {
-                            Bienvenida();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }
-                message.setText("usuario o contrseña incorrecto");
-            }
-            }
-        });
+        if((user.getText().equals("")) || (password.getText().equals(""))){
+            message.setText("Llene los campos vacios");
+                   
+        }else if(validation()){
+            Bienvenida();
+        }else{
+        message.setText("Contraseña o usuario incorrecto"); 
+    
+        }
     }
     
-
-    public void Bienvenida() throws IOException{
-        FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Escena1.fxml"));
-        Parent root = fxmlloader.load();
-        Scene scene = new Scene(root,730,530);
-        Stage s = (Stage)btnLogin.getScene().getWindow();
-        s.setScene(scene);
-        s.setTitle("Bienvenida");
-        s.setResizable(false);
-        s.show();
+    public boolean validation(){
+         ArrayList<Usuario> lista = Usuario.cargarUsuarios();
+            for (Usuario u : lista) {
+                if ((user.getText().equals(u.getUsuario())) || (password.getText().equals(u.getContrasenia()))) {
+                    return true;
+                }
+            }
+        return false;    
     }
+    
+    public void Bienvenida(){
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Escena1.fxml"));
+            Parent root = fxmlloader.load();
+            Scene scene = new Scene(root,730,530);
+            Stage s = (Stage)btnLogin.getScene().getWindow();
+            s.setScene(scene);
+            s.setTitle("Bienvenida");
+            s.setResizable(false);
+            s.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 }
