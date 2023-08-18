@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.pooespol.proyecto2_heladeria.App</mainClass>
+                    <mainClass>com.pooespol.proyecto2_heladeria.Principal</mainClass>
                 </configuration>
                 <executions>
                     <execution>
