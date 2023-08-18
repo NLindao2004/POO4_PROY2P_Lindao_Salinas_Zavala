@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author PC.1
  */
-public class FXMLController implements Initializable {
+public class BienvenidaController implements Initializable {
 
     /**
      * Initializes the controller class.
