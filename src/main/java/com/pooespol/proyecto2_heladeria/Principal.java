@@ -24,7 +24,7 @@ public class Principal extends Application{
     public void start(Stage stage) throws IOException{
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Inicio.fxml"));
         Parent root = fxmlloader.load();
-        scene = new Scene(root,730,530);
+        scene = new Scene(root,730,530);    
         stage.setScene(scene);
         stage.setTitle("Inicio");
         stage.setResizable(false);

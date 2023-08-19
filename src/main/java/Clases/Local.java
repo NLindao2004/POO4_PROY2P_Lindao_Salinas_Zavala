@@ -27,8 +27,8 @@ public class Local {
     public static ArrayList<Local> cargarLocales(){
         ArrayList<Local> locales= new ArrayList();
         try(BufferedReader br= new BufferedReader(new FileReader("locales.txt"))){
-            String linea= br.readLine();
-            while(linea!= null){
+            String linea;
+            while((linea=br.readLine()) != null){
                 String[] lista= linea.split(",");
                 double coordenadaX=Double.parseDouble(lista[0]);
                 double coordenadaY=Double.parseDouble(lista[1]);
@@ -37,7 +37,7 @@ public class Local {
       
                 Local local= new Local(coordenadaX,coordenadaY,nombre,horario);
                 locales.add(local);
-                linea= br.readLine();
+               
             }
         }catch(FileNotFoundException fnf){
             System.out.println(fnf.getMessage());
@@ -76,5 +76,9 @@ public class Local {
     
     public String toString(){
         return "Local"+"{coordenadaX="+this.coordenadaX+", coordenadaY="+this.coordenadaY+", nombre="+this.nombre+", horario="+this.horario+"}";
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(cargarLocales());
     }
 }

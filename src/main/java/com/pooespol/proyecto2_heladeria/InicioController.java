@@ -32,6 +32,7 @@ import javafx.stage.Stage;
  */
 public class InicioController implements Initializable {
 
+    public static String name;
     @FXML
     private ImageView imgInicio;
     @FXML
@@ -66,41 +67,43 @@ public class InicioController implements Initializable {
 
     @FXML
     private void login(){
-        if((user.getText().equals("")) || (password.getText().equals(""))){
-            message.setText("Llene los campos vacios");
-                   
-        }else if(validation()){
+        if (user.getText().isEmpty() || password.getText().isEmpty()) {
+            message.setText("Llene los campos vacíos");
+        } else if(validation()){
             Bienvenida();
         }else{
-        message.setText("Contraseña o usuario incorrecto"); 
-    
+            message.setText("Contrseña o usuario incorrecta");
         }
     }
     
-    public boolean validation(){
-         ArrayList<Usuario> lista = Usuario.cargarUsuarios();
-            for (Usuario u : lista) {
-                if ((user.getText().equals(u.getUsuario())) || (password.getText().equals(u.getContrasenia()))) {
-                    return true;
-                }
+
+  public boolean validation() {
+        ArrayList<Usuario> lista = Usuario.cargarUsuarios();
+        for (Usuario u : lista) {
+            if ((user.getText().equals(u.getUsuario())) && (password.getText().equals(u.getContrasenia()))) {
+                name = user.getText();
+                return true;
+                
             }
-        return false;    
+        }
+        return false;
     }
     
-    public void Bienvenida(){
+    public void Bienvenida() {
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Escena1.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Bienvenida.fxml"));
             Parent root = fxmlloader.load();
-            Scene scene = new Scene(root,730,530);
-            Stage s = (Stage)btnLogin.getScene().getWindow();
+            Scene scene = new Scene(root, 730, 530);
+            Stage s = (Stage) btnLogin.getScene().getWindow();
             s.setScene(scene);
-            s.setTitle("Bienvenida");
-            s.setResizable(false);
+            s.setTitle("Bienvenida");         
             s.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
+    
 
 
 }
