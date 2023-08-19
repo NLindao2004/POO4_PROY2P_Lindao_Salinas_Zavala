@@ -8,27 +8,32 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Base {
+    public static double v = 0;
+    
     private String tipoBase;
-    private double precio;
-    public Base(String tipoBase,double precio ){
+    private String precio;
+    public Base(String tipoBase,String precio ){
         this.tipoBase=tipoBase;
         this.precio=precio;
     }
     
     public static ArrayList<Base> cargarBase(){
+        DecimalFormat df = new DecimalFormat("0.00");
         ArrayList<Base> bases= new ArrayList();
         try(BufferedReader br= new BufferedReader(new FileReader("bases.txt"))){
-            String linea= br.readLine();
-            while(linea!= null){
+            String linea;
+            while((linea= br.readLine())!= null){
                 String[] lista= linea.split(",");
                 String tipoBase=lista[0];
                 double precio=Double.parseDouble(lista[1]);
-                Base base= new Base(tipoBase,precio);
+                String formattedNumber = df.format(precio);
+                Base base= new Base(tipoBase,formattedNumber);
                 bases.add(base);
-                linea= br.readLine();
+                
             }
         }catch(FileNotFoundException fnf){
             System.out.println(fnf.getMessage());
@@ -42,20 +47,22 @@ public class Base {
     public String getTipoBase(){
         return this.tipoBase;
     }
-    public double getPrecio(){
+    public String getPrecio(){
         return this.precio;
     }
     
     public void setTipoBase(String tipoBase){
         this.tipoBase=tipoBase;
     }
-    public void setPrecio(double precio){
+    public void setPrecio(double String){
         this.precio=precio;
     }
     
     public String toString(){
         return "Base"+"{tipoBase="+this.tipoBase+", precio="+this.precio+"}";
     }
-    
+    public static void main(String[] args) {
+        
+    }
     
 }//FinClase

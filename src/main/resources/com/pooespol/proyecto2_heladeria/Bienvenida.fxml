@@ -38,18 +38,18 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="64.0" prefWidth="730.0" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="btnLocales" mnemonicParsing="false" onAction="#encuentraLocales" prefHeight="40.0" prefWidth="245.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Encuentra nuestros locales">
+                        <Button fx:id="btnLocales" mnemonicParsing="false" onAction="#encuentraLocales" prefHeight="40.0" prefWidth="290.0" text="Encuentra nuestros locales">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="71.0" prefWidth="730.0" GridPane.rowIndex="4">
                      <children>
-                        <Button fx:id="btnPedido" mnemonicParsing="false" onAction="#pedido" prefHeight="40.0" prefWidth="245.0" style="-fx-font-style: Candara; -fx-font-weight: 900;" text="Haz tu pedido">
+                        <Button fx:id="btnPedido" mnemonicParsing="false" onAction="#pedido" prefHeight="40.0" prefWidth="290.0" text="Haz tu pedido">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
                      </children>

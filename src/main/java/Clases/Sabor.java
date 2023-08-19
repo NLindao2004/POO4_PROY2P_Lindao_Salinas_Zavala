@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class Sabor {
     private String tipoSabor;
-    private double precio;
-    public Sabor(String tipoSabor,double precio ){
+    private String precio;
+    public Sabor(String tipoSabor,String precio ){
         this.tipoSabor=tipoSabor;
         this.precio=precio;
     }
@@ -22,14 +22,14 @@ public class Sabor {
     public static ArrayList<Sabor> cargarSabores(){
         ArrayList<Sabor> sabores= new ArrayList();
         try(BufferedReader br= new BufferedReader(new FileReader("sabores.txt"));){
-            String linea= br.readLine();
-            while(linea!= null){
+            String linea;
+            while((linea= br.readLine())!= null){
                 String[] lista= linea.split(",");
                 String tipoSabor=lista[0];
-                double precio=Double.parseDouble(lista[1]);
+                String precio=lista[1];
                 Sabor sabor= new Sabor(tipoSabor,precio);
                 sabores.add(sabor);
-                linea= br.readLine();
+                
             }
         }catch(FileNotFoundException fnf){
             System.out.println(fnf.getMessage());
@@ -43,20 +43,22 @@ public class Sabor {
     public String getTipoSabor(){
         return this.tipoSabor;
     }
-    public double getPrecio(){
+    public String getPrecio(){
         return this.precio;
     }
     
     public void setTipoBase(String tipoSabor){
         this.tipoSabor=tipoSabor;
     }
-    public void setPrecio(double precio){
+    public void setPrecio(String precio){
         this.precio=precio;
     }
     
     public String toString(){
-        return "Sabor"+"{tipoSabor="+this.tipoSabor+", precio="+this.precio+"}";
+        return this.tipoSabor+" - "+this.precio;
     }
-    
+    public static void main(String[] args) {
+        System.out.println(cargarSabores());
+    }
     
 }

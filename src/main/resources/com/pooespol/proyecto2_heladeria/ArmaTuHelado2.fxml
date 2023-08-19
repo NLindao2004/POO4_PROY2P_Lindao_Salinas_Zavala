@@ -13,15 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.ArmaTuHelado2Controller">
    <children>
-      <ImageView fitHeight="530.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgArmaTuHelado2" fitHeight="530.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true" />
       <VBox prefHeight="530.0" prefWidth="730.0">
          <children>
             <HBox alignment="BOTTOM_LEFT" prefHeight="172.0" prefWidth="730.0">
                <children>
-                  <Label alignment="TOP_LEFT" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Paso 2:  Elije los sabores">
+                  <Label alignment="TOP_LEFT" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Paso 2:  Elije los sabores" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
@@ -44,12 +43,12 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="129.0" prefWidth="252.0" spacing="20.0">
                      <children>
-                        <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Sabor 1">
+                        <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Sabor 1" textFill="WHITE">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="230.0" />
+                        <ComboBox fx:id="cb1" onAction="#sabor1" prefHeight="25.0" prefWidth="230.0" />
                      </children>
                      <GridPane.margin>
                         <Insets left="50.0" />
@@ -57,32 +56,35 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1">
                      <children>
-                        <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Sabor 2">
+                        <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Sabor 2" textFill="WHITE">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="230.0" />
+                        <ComboBox fx:id="cb2" onAction="#sabor2" prefHeight="25.0" prefWidth="230.0" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Contiuar">
+                        <Button fx:id="btnContinuar" mnemonicParsing="false" onAction="#continuar" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #E1B4D4;" text="Contiuar">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Label style="-fx-font-family: Candara;" text="Label">
+                        <Label fx:id="valorTotal" style="-fx-font-family: Candara;" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>

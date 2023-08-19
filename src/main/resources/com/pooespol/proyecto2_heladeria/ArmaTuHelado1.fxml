@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -14,10 +15,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.ArmaTuHelado1Controller">
    <children>
-      <ImageView fitHeight="530.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgArmaTuHelado1" fitHeight="530.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" prefHeight="530.0" prefWidth="730.0">
          <children>
-            <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Paso1: Escoge tu base">
+            <Label style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Paso1: Escoge tu base" textFill="WHITE">
                <font>
                   <Font size="36.0" />
                </font>
@@ -39,21 +40,21 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <Label fx:id="lblValorPagar" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Valor a pagar:">
+                        <Label fx:id="lblValorPagar" style="-fx-font-family: Candara; -fx-font-weight: 900;" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="40.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="btnContinuar" mnemonicParsing="false" onAction="#continuar" style="-fx-background-color: white; -fx-font-family: Candara; -fx-font-weight: 900;" text="Continuar">
+                        <Button fx:id="btnContinuar" mnemonicParsing="false" onAction="#continuar" style="-fx-background-color: #E1B4D4;" text="Continuar" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                            <VBox.margin>
                               <Insets right="40.0" />
@@ -63,34 +64,34 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="lblYogurt" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Valor">
+                        <Label fx:id="lblYogurt" style="-fx-font-family: Candara; -fx-font-weight: 900;" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="lblHelado" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Valor">
+                        <Label fx:id="lblHelado" style="-fx-font-family: Candara; -fx-font-weight: 900;" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="lblVengano" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Valor">
+                        <Label fx:id="lblVegano" style="-fx-font-family: Candara; -fx-font-weight: 900;" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="btnYogurt" mnemonicParsing="false" onAction="#yogurt" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: #1b377e; -fx-font-family: Candara; -fx-font-weight: 900;" text="yogurt" textFill="WHITE">
+                        <Button fx:id="btnYogurt" mnemonicParsing="false" onAction="#yogurt" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: #E1B4D4;" text="yogurt" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -98,6 +99,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                         </Button>
                      </children>
                      <GridPane.margin>
@@ -106,7 +110,7 @@
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="259.0" prefWidth="243.0" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="btnHelado" mnemonicParsing="false" onAction="#helado" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: brown; -fx-font-family: Candara; -fx-font-weight: 900;" text="Helado" textFill="WHITE">
+                        <Button fx:id="btnHelado" mnemonicParsing="false" onAction="#helado" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: #E1B4D4;" text="Helado" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -114,6 +118,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                         </Button>
                      </children>
                      <padding>
@@ -122,9 +129,9 @@
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                      <children>
-                        <Button fx:id="btnVegano" mnemonicParsing="false" onAction="#vegano" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: yellow; -fx-font-family: Candara; -fx-font-weight: 900;" text="Vegano">
+                        <Button fx:id="btnVegano" mnemonicParsing="false" onAction="#vegano" prefHeight="158.0" prefWidth="173.0" style="-fx-background-color: #E1B4D4;" text="Vegano" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -139,6 +146,15 @@
                         <Insets bottom="30.0" />
                      </GridPane.margin>
                   </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label fx:id="message" textFill="RED">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>

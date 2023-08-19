@@ -17,10 +17,14 @@ import static java.lang.Math.random;
 import java.util.Random;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -37,44 +41,60 @@ public class UbicacionesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        mostrarIcono();
+        iniciarTarea();
         
     }    
     
+    public void iniciarTarea(){
+        Thread inicio = new Thread(new Runnable(){
+            public void run(){
+                mostrarIcono();
+            }
+        });
+        inicio.start();
+    }
+    
     public void mostrarIcono() {
-        Random random = new Random();
-        ArrayList<Local> lista = Local.cargarLocales();
-        Image image;
-        try(FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
-            image = new Image(file, 40, 40, false, false);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return;
-        }
+    ArrayList<Local> lista = Local.cargarLocales();
 
-        Thread thread = new Thread(() -> {
-            for (Local local : lista) {
-                ImageView img = new ImageView(image);
+        for (Local l : lista) {
+            try (FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
+                Image image = new Image(file, 45, 45, false, false);
+                ImageView smallImageView = new ImageView(image);
                 
-
                 Platform.runLater(() -> {
-                    Button button = new Button("", img);
-                    root.getChildren().add(button);
-                    button.setLayoutX(local.getCoordenadaX());
-                    button.setLayoutY(local.getCoordenadaY());
+                root.getChildren().add(smallImageView);
+                smallImageView.setLayoutX(l.getCoordenadaX());
+                smallImageView.setLayoutY(l.getCoordenadaY());
+                smallImageView.setOnMouseClicked(event -> {
+                    mostrarEscena(); 
+                });
+                
                 });
 
+                Random random = new Random();
+                int randomNumber = random.nextInt(10) + 1;
+
                 try {
-                    Thread.sleep((random.nextInt(10) + 1) * 1000);
+                    Thread.sleep(1000 * randomNumber);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-        });
-
-        thread.start();
+        }
     }
-    
-    
-    
+    public void mostrarEscena() {
+    try {
+        FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("DetalleUbicacion.fxml"));
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+}
 }

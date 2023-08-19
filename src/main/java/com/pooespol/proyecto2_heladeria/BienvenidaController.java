@@ -71,8 +71,14 @@ public class BienvenidaController implements Initializable {
     }
 
     @FXML
-    private void pedido() {
-        
+    private void pedido() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado1.fxml"));
+            Parent root = fxmlloader.load();
+            Scene scene = new Scene(root, 730, 530);
+            Stage s = (Stage) btnPedido.getScene().getWindow();
+            s.setScene(scene);
+            s.setTitle("ArmaTuHelado1");         
+            s.show();
     }
     
     
