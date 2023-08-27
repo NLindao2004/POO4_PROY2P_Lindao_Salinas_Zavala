@@ -9,16 +9,35 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.ArmaTuHelado4Controller">
    <children>
-      <ImageView fitHeight="530.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="81.0" layoutY="58.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Tu pedido">
+      <ImageView fx:id="imgArmaTuHelado4" fitHeight="530.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="68.0" layoutY="56.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Tu pedido">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <ListView layoutX="81.0" layoutY="144.0" prefHeight="201.0" prefWidth="333.0" />
-      <Label layoutX="81.0" layoutY="485.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Valor a pagar:" />
-      <Button layoutX="440.0" layoutY="233.0" mnemonicParsing="false" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Eliminar" />
-      <Button layoutX="544.0" layoutY="481.0" mnemonicParsing="false" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Confirmar" />
-      <Button layoutX="644.0" layoutY="481.0" mnemonicParsing="false" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Cancelar" />
+      <ListView fx:id="pedido" layoutX="68.0" layoutY="125.0" prefHeight="268.0" prefWidth="399.0" />
+      <Label fx:id="valorPagar" layoutX="68.0" layoutY="459.0" prefHeight="30.0" prefWidth="270.0" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font></Label>
+      <Button fx:id="btnEliminar" layoutX="510.0" layoutY="125.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #E1B4D4;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="18.0" />
+         </font></Button>
+      <Button fx:id="btnConfirmar" layoutX="436.0" layoutY="455.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #E1B4D4;" text="Confirmar" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelar" layoutX="610.0" layoutY="455.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #E1B4D4;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="message" layoutX="477.0" layoutY="188.0" prefHeight="66.0" prefWidth="264.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Candara Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

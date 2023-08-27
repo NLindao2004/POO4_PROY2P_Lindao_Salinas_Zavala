@@ -1,9 +1,10 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.pooespol.proyecto2_heladeria;
 
+import Clases.IncompleteStageException;
 import Clases.Sabor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,7 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import com.pooespol.proyecto2_heladeria.ArmaTuHelado1Controller;
 /**
  * FXML Controller class
  *
@@ -31,6 +32,14 @@ import javafx.stage.Stage;
  */
 public class ArmaTuHelado2Controller implements Initializable {
 
+    private boolean cbx1Select = false;
+    private boolean cbx2Select = false;
+    private static double valorcb1 = 0;
+    private static double valorcb2 = 0;
+    public static double valor2 = 0;
+    private String sabor_1 = null;
+    private String sabor_2 = null;
+    
     @FXML
     private ImageView imgArmaTuHelado2;
     @FXML
@@ -41,6 +50,9 @@ public class ArmaTuHelado2Controller implements Initializable {
     private ComboBox<Sabor> cb2;
     @FXML
     private Button btnContinuar;
+    @FXML
+    private Label message;
+    
 
     /**
      * Initializes the controller class.
@@ -65,23 +77,54 @@ public class ArmaTuHelado2Controller implements Initializable {
 
     @FXML
     private void sabor1() {
+        cbx1Select = true ;
+        message.setText("");
         Sabor selectedItem = cb1.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            sabor_1 = "Sabor: "+selectedItem.getTipoSabor()+"-"+selectedItem.getPrecio();
+            String precio = selectedItem.getPrecio();
+            valorcb1 = Double.parseDouble(precio);
+            Double total = ArmaTuHelado1Controller.valor+valorcb1+valorcb2;
+            String formatted = String.format("%.2f", total);
+            valor2= total;
+            valorTotal.setText("Valor a pagar: "+formatted);
+        }
     }
 
     @FXML
     private void sabor2() {
+        cbx2Select = true;
+        message.setText("");
         Sabor selectedItem = cb2.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            sabor_2 = "Sabor: "+selectedItem.getTipoSabor()+"-"+selectedItem.getPrecio();
+            String precio = selectedItem.getPrecio();
+            valorcb2 = Double.parseDouble(precio);
+            Double total = ArmaTuHelado1Controller.valor+valorcb2+valorcb1;
+            String formatted = String.format("%.2f", total);
+            valor2= total;
+            valorTotal.setText("Valor a pagar: "+formatted);
+            }
     }
 
     @FXML
     private void continuar(ActionEvent event) throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado3.fxml"));
-            Parent root = fxmlloader.load();
-            Scene scene = new Scene(root, 730, 530);
-            Stage s = (Stage) btnContinuar.getScene().getWindow();
-            s.setScene(scene);
-            s.setTitle("ArmaTuHelado1");         
-            s.show();
+        saborSelect();
+        try {
+            if (cbx1Select || cbx2Select ) {
+                FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado3.fxml"));
+                    Parent root = fxmlloader.load();
+                    Scene scene = new Scene(root, 730, 530);
+                    Stage s = (Stage) btnContinuar.getScene().getWindow();
+                    s.setScene(scene);
+                    s.setTitle("ArmaTuHelado3");         
+                    s.show();
+            } else {
+                throw new IncompleteStageException(); 
+            }
+        } catch (IncompleteStageException e) {
+            message.setText(e.getMessage()); 
+        } 
     }
     
     public void cargarCB(){
@@ -89,5 +132,16 @@ public class ArmaTuHelado2Controller implements Initializable {
         cb1.getItems().addAll(lista);
         cb2.getItems().addAll(lista);
         
+    }
+    
+    public void saborSelect(){
+        if (sabor_1 != null && sabor_2!= null) {
+            ArmaTuHelado1Controller.orden.add(sabor_1);
+            ArmaTuHelado1Controller.orden.add(sabor_2);
+        }else if(sabor_2!= null){
+            ArmaTuHelado1Controller.orden.add(sabor_2);
+        }else if(sabor_1!= null){
+            ArmaTuHelado1Controller.orden.add(sabor_1);
+        }
     }
 }

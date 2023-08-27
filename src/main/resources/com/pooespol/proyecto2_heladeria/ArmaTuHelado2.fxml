@@ -88,6 +88,14 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Label fx:id="message" prefHeight="57.0" prefWidth="365.0" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-50.0" left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
          </children>

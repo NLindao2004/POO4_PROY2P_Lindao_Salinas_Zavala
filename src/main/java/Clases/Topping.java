@@ -22,14 +22,14 @@ public class Topping {
     public static ArrayList<Topping> cargarSabores(){
         ArrayList<Topping> toppings= new ArrayList();
         try(BufferedReader br= new BufferedReader(new FileReader("toppings.txt"))){
-            String linea= br.readLine();
-            while(linea!= null){
+            String linea;
+            while((linea= br.readLine()) != null){
                 String[] lista= linea.split(",");
                 String tipoTopping=lista[0];
                 double precio=Double.parseDouble(lista[1]);
                 Topping topping= new Topping(tipoTopping,precio);
                 toppings.add(topping);
-                linea= br.readLine();
+                
             }
         }catch(FileNotFoundException fnf){
             System.out.println(fnf.getMessage());

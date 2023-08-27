@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 
 public class Sabor {
+    public static double n = 15.00;
     private String tipoSabor;
     private String precio;
     public Sabor(String tipoSabor,String precio ){
@@ -58,7 +59,10 @@ public class Sabor {
         return this.tipoSabor+" - "+this.precio;
     }
     public static void main(String[] args) {
-        System.out.println(cargarSabores());
+        double n = 2.00;
+        String formatted = String.format("%.2f", n);
+        System.out.println("cadena:"+formatted);
+        
     }
     
 }

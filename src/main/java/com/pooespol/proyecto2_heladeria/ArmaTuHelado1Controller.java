@@ -5,6 +5,7 @@
 package com.pooespol.proyecto2_heladeria;
 
 import Clases.Base;
+import Clases.IncompleteStageException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class ArmaTuHelado1Controller implements Initializable {
     private boolean btnYogurtSelected = false;
     private boolean btnHeladoSelected = false;
     private boolean btnVeganoSelected = false;
-    
+    public static ArrayList<String> orden = new ArrayList<>();
     @FXML
     private Label lblValorPagar;
     @FXML
@@ -67,18 +68,28 @@ public class ArmaTuHelado1Controller implements Initializable {
 
     @FXML
     private void continuar(ActionEvent event) throws IOException {
-        if (btnYogurtSelected || btnHeladoSelected || btnVeganoSelected) {
-            FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado2.fxml"));
-            Parent root = fxmlloader.load();
-            Scene scene = new Scene(root, 730, 530);
-            Stage s = (Stage) btnContinuar.getScene().getWindow();
-            s.setScene(scene);
-            s.setTitle("ArmaTuHelado1");         
-            s.show();
-        }else{
-            message.setText("Seleccione un base");
+        if (btnYogurtSelected) {
+            orden.add("Base: Yogurt");
+        }else if(btnHeladoSelected){
+            orden.add("Base: Helado");
+        }else if(btnVeganoSelected){
+            orden.add("Base: Vegano");
         }
-        
+        try {
+            if (btnYogurtSelected || btnHeladoSelected || btnVeganoSelected) {
+                FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado2.fxml"));
+                    Parent root = fxmlloader.load();
+                    Scene scene = new Scene(root, 730, 530);
+                    Stage s = (Stage) btnContinuar.getScene().getWindow();
+                    s.setScene(scene);
+                    s.setTitle("ArmaTuHelado2");         
+                    s.show();
+            } else {
+                throw new IncompleteStageException(); 
+            }
+        } catch (IncompleteStageException e) {
+            message.setText(e.getMessage()); 
+        } 
     }
 
     @FXML
@@ -87,6 +98,7 @@ public class ArmaTuHelado1Controller implements Initializable {
         lblValorPagar.setText("Valor a pagar: "+lblYogurt.getText());
         valor = Double.parseDouble(lblYogurt.getText());
         btnYogurtSelected = true;
+        
     }
 
     @FXML

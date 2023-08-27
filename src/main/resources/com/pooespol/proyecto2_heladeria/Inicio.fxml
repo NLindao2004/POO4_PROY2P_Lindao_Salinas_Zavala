@@ -76,9 +76,9 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" style="-fx-font-family: Candara; -fx-font-weight: 900; -fx-background-color: #ffffff;" text="Iniciar Sesion">
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #ffffff;" text="Iniciar Sesion">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
                </children>

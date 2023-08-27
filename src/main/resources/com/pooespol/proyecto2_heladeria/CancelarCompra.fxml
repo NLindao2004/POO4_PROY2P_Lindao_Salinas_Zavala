@@ -6,15 +6,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.CancelarCompraController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.CancelarCompraController">
    <children>
-      <ImageView fitHeight="230.0" fitWidth="336.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="61.0" layoutY="67.0" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="¿Esta seguro de cancelar su compra?">
+      <ImageView fx:id="imgCancelar" fitHeight="230.0" fitWidth="340.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="26.0" layoutY="63.0" prefHeight="22.0" prefWidth="297.0" text="¿Esta seguro de cancelar su compra?" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font name="Candara Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="102.0" layoutY="126.0" mnemonicParsing="false" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Aceptar" />
-      <Button layoutX="168.0" layoutY="126.0" mnemonicParsing="false" style="-fx-font-family: Candara; -fx-font-weight: 900;" text="Cancelar" />
+      <Button fx:id="btnAceptar" layoutX="26.0" layoutY="166.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #E1B4D4;" text="Aceptar">
+         <font>
+            <Font name="Candara Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnCancelar" layoutX="205.0" layoutY="166.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #E1B4D4;" text="Cancelar">
+         <font>
+            <Font name="Candara Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
