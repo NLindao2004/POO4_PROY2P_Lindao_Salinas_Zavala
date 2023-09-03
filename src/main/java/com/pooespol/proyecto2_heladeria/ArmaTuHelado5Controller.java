@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 //import com.pooespol.proyecto2_heladeria.ArmaTuHelado4Controller;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Random;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -140,19 +141,48 @@ public class ArmaTuHelado5Controller implements Initializable {
     }
     
     private void efectivo(){
-        op1.setOnAction(e->{
             tipo = "E";
             double v = ArmaTuHelado4Controller.ValorPagar;
-            String formatted = String.format("%.2f", v);
+            String formatted = String.format(Locale.US,"%.2f", v);
             valor.setText(String.valueOf(formatted));
             adicionalT.setText("0.00");
             double IVA = v*0.12;
-            String formatted1 = String.format("%.2f", IVA);
+            String formatted1 = String.format(Locale.US,"%.2f", IVA);
             iva.setText(String.valueOf(formatted1));
             double t = IVA+v;
-            String formatted2 = String.format("%.2f", t);
+            String formatted2 = String.format(Locale.US,"%.2f", t);
             total.setText(formatted2);
+            
+        
+        op1.setOnAction(e->{
+            double v1 = ArmaTuHelado4Controller.ValorPagar;
+            String formatted3 = String.format(Locale.US,"%.2f", v);
+            valor.setText(String.valueOf(formatted3));
+            adicionalT.setText("0.00");
+            double IVA1 = v*0.12;
+            String formatted4 = String.format(Locale.US,"%.2f", IVA1);
+            iva.setText(String.valueOf(formatted4));
+            double t1 = IVA1+v1;
+            String formatted5 = String.format(Locale.US,"%.2f", t1);
+            total.setText(formatted5);
+            mensaje.setText("");
             mensaje.setText("Acércate a caja para pagar tu pedido");
+            seccionField.getChildren().clear(); 
+            seccionLabel.getChildren().clear(); 
+            adicionalT.setText("0.00");
+            btnConfirmar.setOnAction(event -> {
+                Random random = new Random();
+                    int id = random.nextInt(1000) + 1;
+                    LocalDate fechaActual = LocalDate.now();
+                    Pago p = new Pago(String.valueOf(id),ArmaTuHelado4Controller.idPd,InicioController.name,Double.parseDouble(total.getText()),String.valueOf(fechaActual),tipo);
+                    Pedido pd = new Pedido();
+                    pd.generarTransacción(p);
+                try {
+                cambiarEscena();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+});
         });
     }
     
@@ -161,10 +191,10 @@ public class ArmaTuHelado5Controller implements Initializable {
             tipo = "T";
             mensaje.setText("");
             double adicional = Double.parseDouble(valor.getText())*0.10;
-            String formatted1 = String.format("%.2f", adicional);
+            String formatted1 = String.format(Locale.US,"%.2f", adicional);
             adicionalT.setText(String.valueOf(formatted1));
-            double t = Double.parseDouble(total.getText())+adicional;
-            String formatted = String.format("%.2f", t);
+            double t = Double.parseDouble(valor.getText())+adicional+Double.parseDouble(iva.getText());
+            String formatted = String.format(Locale.US,"%.2f", t);
             total.setText(String.valueOf(formatted));
             Font font = Font.font("Candara", FontWeight.BOLD, 14);  
             Font font2 = Font.font("Candara", FontWeight.NORMAL, 14);  

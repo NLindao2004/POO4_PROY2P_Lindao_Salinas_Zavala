@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import com.pooespol.proyecto2_heladeria.ArmaTuHelado1Controller;
+import java.util.Locale;
 /**
  * FXML Controller class
  *
@@ -85,7 +86,7 @@ public class ArmaTuHelado2Controller implements Initializable {
             String precio = selectedItem.getPrecio();
             valorcb1 = Double.parseDouble(precio);
             Double total = ArmaTuHelado1Controller.valor+valorcb1+valorcb2;
-            String formatted = String.format("%.2f", total);
+            String formatted = String.format(Locale.US,"%.2f", total);
             valor2= total;
             valorTotal.setText("Valor a pagar: "+formatted);
         }
@@ -101,7 +102,7 @@ public class ArmaTuHelado2Controller implements Initializable {
             String precio = selectedItem.getPrecio();
             valorcb2 = Double.parseDouble(precio);
             Double total = ArmaTuHelado1Controller.valor+valorcb2+valorcb1;
-            String formatted = String.format("%.2f", total);
+            String formatted = String.format(Locale.US,"%.2f", total);
             valor2= total;
             valorTotal.setText("Valor a pagar: "+formatted);
             }

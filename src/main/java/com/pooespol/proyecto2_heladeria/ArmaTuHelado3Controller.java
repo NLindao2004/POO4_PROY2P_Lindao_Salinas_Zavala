@@ -4,7 +4,6 @@
  */
 package com.pooespol.proyecto2_heladeria;
 
-import Clases.IncompleteStageException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,8 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import com.pooespol.proyecto2_heladeria.ArmaTuHelado2Controller;
 import java.util.ArrayList;
+import java.util.Locale;
 /**
  * FXML Controller class
  *
@@ -80,7 +79,7 @@ public class ArmaTuHelado3Controller implements Initializable {
         // TODO
         mostrarImg();
         Double valorTuHelado3 = ArmaTuHelado2Controller.valor2;
-        String formatted = String.format("%.2f", valorTuHelado3);
+        String formatted = String.format(Locale.US,"%.2f", valorTuHelado3);
         valorPagar.setText("Valor a pagar: "+formatted);
     }   
 
@@ -118,7 +117,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             ck1 = precioTopping;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -126,7 +125,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c1= null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }
@@ -142,7 +141,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             c2= "Topping: "+cadena;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -150,7 +149,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c2 = null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }
@@ -166,7 +165,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             ck3 = precioTopping;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -174,7 +173,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c3 = null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }
@@ -190,7 +189,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             ck4 = precioTopping;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -198,7 +197,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c4 = null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }
@@ -214,7 +213,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             ck5 = precioTopping;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -222,7 +221,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c5 = null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }
@@ -238,7 +237,7 @@ public class ArmaTuHelado3Controller implements Initializable {
             c6= "Topping: "+cadena;
             totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
             Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format("%.2f", ValorTotal);
+            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
             valorPagar.setText("Valor a pagar: "+formatted);
             valor3 = ValorTotal;
         }else{
@@ -246,7 +245,7 @@ public class ArmaTuHelado3Controller implements Initializable {
            c6=null;
            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format("%.2f", ValorTotal);
+           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
            valorPagar.setText("Valor a pagar: "+formatted);
            valor3 = ValorTotal;
        }

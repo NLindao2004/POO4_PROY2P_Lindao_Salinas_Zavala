@@ -17,10 +17,12 @@ import java.util.ArrayList;
 public class Usuario {
     private String usuario;
     private String contrasenia;
+    private String nombre;
     
-    public Usuario(String usuario,String contrasenia ){
+    public Usuario(String usuario,String contrasenia,String nombre ){
         this.usuario=usuario;
         this.contrasenia=contrasenia;
+        this.nombre=nombre;
     }
     
     public static ArrayList<Usuario> cargarUsuarios(){
@@ -31,7 +33,8 @@ public class Usuario {
                 String[] lista= linea.split(",");
                 String us= lista[0];
                 String contra= lista[1];
-                Usuario u= new Usuario(us,contra);
+                String nom= lista[2];
+                Usuario u= new Usuario(us,contra,nom);
                 usuarios.add(u);
                 
             }
@@ -51,6 +54,10 @@ public class Usuario {
 
     public String getContrasenia() {
         return contrasenia;
+    }
+    
+    public String getNombre() {
+        return nombre;
     }
     
     public String toString(){

@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import Clases.Topping;
+import java.util.Locale;
 import java.util.Random;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -127,7 +128,7 @@ public class ArmaTuHelado4Controller implements Initializable {
     
     public void valorFinal(){
         Double valorF = ArmaTuHelado3Controller.valor3;
-        String formatted = String.format("%.2f", valorF);
+        String formatted = String.format(Locale.US,"%.2f", valorF);
         valorPagar.setText("Valor a pagar: "+formatted);
     }
 
@@ -200,7 +201,7 @@ public class ArmaTuHelado4Controller implements Initializable {
                     for (Topping t : lstTp) {
                         if (tp.equals(t.getTipoTopping())) {
                         ValorPagar = ValorPagar - t.getPrecio();   
-                        resta = String.format("%.2f", ValorPagar);                      
+                        resta = String.format(Locale.US,"%.2f", ValorPagar);                      
                         }
                     }
                     mostrarPopUp(resta);
@@ -223,7 +224,7 @@ public class ArmaTuHelado4Controller implements Initializable {
                         for (Sabor S : lstSb) {
                             if (sabor.equals(S.getTipoSabor())) {
                                 ValorPagar = ValorPagar - Double.parseDouble(S.getPrecio());
-                                resta1 = String.format("%.2f", ValorPagar);                      
+                                resta1 = String.format(Locale.US,"%.2f", ValorPagar);                      
                             }
                         }
                         mostrarPopUp(resta1);  

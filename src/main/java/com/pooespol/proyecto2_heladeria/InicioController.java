@@ -82,7 +82,7 @@ public class InicioController implements Initializable {
         ArrayList<Usuario> lista = Usuario.cargarUsuarios();
         for (Usuario u : lista) {
             if ((user.getText().equals(u.getUsuario())) && (password.getText().equals(u.getContrasenia()))) {
-                name = user.getText();
+                name = u.getNombre();
                 return true;
                 
             }

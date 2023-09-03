@@ -8,8 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Base {
     public static double v = 0;
@@ -22,7 +22,6 @@ public class Base {
     }
     
     public static ArrayList<Base> cargarBase(){
-        DecimalFormat df = new DecimalFormat("0.00");
         ArrayList<Base> bases= new ArrayList();
         try(BufferedReader br= new BufferedReader(new FileReader("bases.txt"))){
             String linea;
@@ -30,8 +29,8 @@ public class Base {
                 String[] lista= linea.split(",");
                 String tipoBase=lista[0];
                 double precio=Double.parseDouble(lista[1]);
-                String formattedNumber = df.format(precio);
-                Base base= new Base(tipoBase,formattedNumber);
+                String formatted = String.format(Locale.US,"%.2f", precio);               
+                Base base= new Base(tipoBase,formatted);
                 bases.add(base);
                 
             }
@@ -62,7 +61,7 @@ public class Base {
         return "Base"+"{tipoBase="+this.tipoBase+", precio="+this.precio+"}";
     }
     public static void main(String[] args) {
-        
+        System.out.println(cargarBase());
     }
     
 }//FinClase

@@ -132,14 +132,13 @@ public class ArmaTuHelado1Controller implements Initializable {
         ArrayList<Base> lista = Base.cargarBase();
         for (Base base : lista) {
             if (base.getTipoBase().equals("yogurt")) {
-                String valor = String.valueOf(base.getPrecio());
-                lblYogurt.setText(valor);
+
+                lblYogurt.setText(base.getPrecio());
             }else if(base.getTipoBase().equals("helado")){
-                String valor = String.valueOf(base.getPrecio());
-                lblHelado.setText(valor);
+
+                lblHelado.setText(base.getPrecio());
             }else if(base.getTipoBase().equals("vegano")){
-                String valor = String.valueOf(base.getPrecio());
-                lblVegano.setText(valor);
+                lblVegano.setText(base.getPrecio());
             }
         }
     }

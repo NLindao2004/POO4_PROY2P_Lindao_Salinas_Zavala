@@ -1,2 +1,2 @@
-Fernando,proyecto
-Nehemias,proyecto
+Fernando,proyecto,Fernando Zavala
+Nehemias,proyecto,Nehemias Lindao
