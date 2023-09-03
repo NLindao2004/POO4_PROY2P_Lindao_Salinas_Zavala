@@ -13,3 +13,10 @@
 136,Fernando Zavala,5.25
 519,Fernando Zavala,5.3
 138,Fernando Zavala,5.05
+593,Fernando Zavala,4.25
+635,Fernando Zavala,0.0
+33,Fernando Zavala,4.25
+34,Fernando Zavala,4.25
+652,Fernando Zavala,3.75
+64,Fernando Zavala,3.75
+453,Fernando Zavala,4.55

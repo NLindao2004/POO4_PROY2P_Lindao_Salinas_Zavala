@@ -28,10 +28,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Random;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextFlow;
@@ -127,6 +130,11 @@ public class ArmaTuHelado5Controller implements Initializable {
         op2.setToggleGroup(tg);
         efectivo();
         tarjeta();
+        valor.setEditable(false);
+        adicionalT.setEditable(false);
+        iva.setEditable(false);
+        total.setEditable(false);
+        
     } 
     
      /**
@@ -269,8 +277,43 @@ public class ArmaTuHelado5Controller implements Initializable {
             seccionField.getChildren().addAll(tf1,tf2,fecha,tf4);
             seccionField.setSpacing(20);
             
+            // Crear un filtro para permitir solo cadenas de caracteres
+            UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+                if (newText.matches("^[\\p{L} \\s]*$")) {
+                    return change;
+                }
+                return null; // Rechazar el cambio si no es una cadena de caracteres válida
+            };
+            TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+            tf1.setTextFormatter(textFormatter);
+            
+            // Crear un filtro para permitir solo números enteros
+            UnaryOperator<TextFormatter.Change> filter1 = change -> {
+                String newText = change.getControlNewText();
+                if (Pattern.matches("^\\d*$", newText)) {
+                    return change;
+                }
+                return null; // Rechazar el cambio si no es un número entero
+            };
+
+            TextFormatter<String> textFormatter1 = new TextFormatter<>(filter1);
+            tf2.setTextFormatter(textFormatter1);
+            
+            
+            UnaryOperator<TextFormatter.Change> filter2 = change -> {
+                String newText = change.getControlNewText();
+                if (Pattern.matches("^\\d*$", newText)) {
+                    return change;
+                }
+                return null; // Rechazar el cambio si no es un número entero
+            };
+
+            TextFormatter<String> textFormatter2 = new TextFormatter<>(filter2);
+            tf4.setTextFormatter(textFormatter2);
+            
             btnConfirmar.setOnAction(event -> {
-                if (tf1.getText().isEmpty() || tf2.getText().isEmpty() || tf4.getText().isEmpty()) {
+                if (tf1.getText().isEmpty() || tf2.getText().isEmpty() || tf4.getText().isEmpty() || fecha.getValue() == null) {
                     mensaje.setText("Por favor, completa todos los campos.");
                 } else {
                     Random random = new Random();

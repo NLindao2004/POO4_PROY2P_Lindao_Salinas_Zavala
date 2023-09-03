@@ -172,6 +172,7 @@ public class ArmaTuHelado3Controller implements Initializable {
         Double valorTuHelado3 = ArmaTuHelado2Controller.valor2;
         String formatted = String.format(Locale.US, "%.2f", valorTuHelado3);
         valorPagar.setText("Valor a pagar: " + formatted);
+        metodo();
     }   
 
     /**
@@ -204,6 +205,18 @@ public class ArmaTuHelado3Controller implements Initializable {
             // Manejar excepción si la imagen no se encuentra
         } catch (Exception ex) {
             // Manejar otras excepciones posibles
+        }
+    }
+    
+    /**
+     * Calcula el valor a pagar en función de las selecciones realizadas en las casillas de verificación.
+     * Si ninguna casilla de verificación está seleccionada, muestra el valor a pagar que ya se tenia.
+     */
+    public void metodo(){
+        if (!chk1.isSelected() && !chk2.isSelected() && !chk3.isSelected() && !chk4.isSelected() && !chk5.isSelected() && !chk6.isSelected() ) {
+            valor3 = ArmaTuHelado2Controller.valor2;
+            String formatted = String.format(Locale.US,"%.2f", valor3);
+            valorPagar.setText("Valor a pagar: "+formatted);
         }
     }
      
