@@ -20,7 +20,7 @@
          <font>
             <Font name="Candara Bold" size="24.0" />
          </font></Label>
-      <Button fx:id="btnEliminar" layoutX="510.0" layoutY="125.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #E1B4D4;" text="Eliminar" textFill="WHITE">
+      <Button fx:id="btnEliminar" layoutX="510.0" layoutY="125.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #E1B4D4;" text="Eliminar" textFill="WHITE">
          <font>
             <Font name="Candara Bold" size="18.0" />
          </font></Button>

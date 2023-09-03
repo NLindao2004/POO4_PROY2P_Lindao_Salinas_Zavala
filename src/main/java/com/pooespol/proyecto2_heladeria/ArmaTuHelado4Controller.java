@@ -4,6 +4,7 @@
  */
 package com.pooespol.proyecto2_heladeria;
 
+import Clases.Pedido;
 import Clases.Sabor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,13 +23,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import com.pooespol.proyecto2_heladeria.ArmaTuHelado3Controller;
-import com.pooespol.proyecto2_heladeria.ArmaTuHelado1Controller;
 import java.util.ArrayList;
 import Clases.Topping;
-import com.pooespol.proyecto2_heladeria.EliminarComponenteController;
+import java.util.Random;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -38,13 +41,12 @@ import javafx.collections.ObservableList;
 public class ArmaTuHelado4Controller implements Initializable {
 
     ArrayList<String> lista = ArmaTuHelado1Controller.orden ;
-    private  String cadenaTopping = null;
-    private  String cadenaSabor = null;
     private  int selectedIndex = 0;
-    String elementoSeleccionado = null;
     private ObservableList<String> items;
-    
-    
+    public static double ValorPagar =ArmaTuHelado3Controller.valor3;
+    public static String idPd = null;       
+ 
+
     @FXML
     private Button btnCancelar;
 
@@ -77,7 +79,10 @@ public class ArmaTuHelado4Controller implements Initializable {
         cargarList();
         items = FXCollections.observableArrayList(cargarList());
         pedido.setItems(items);
-        //modificarTopping(EliminarComponenteController.verification);
+        btnEliminar.setOnAction(e->{
+            validation();
+        });
+    
         
        
     }    
@@ -95,51 +100,19 @@ public class ArmaTuHelado4Controller implements Initializable {
     }
     
     @FXML
-    void confirmar(ActionEvent event) throws IOException {
-        
+    void confirmar(ActionEvent event) throws IOException{
+        guardarPedido();
+        FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado5.fxml"));
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root, 730, 530);
+        Stage s = (Stage) btnConfirmar.getScene().getWindow();
+        s.setScene(scene);
+        s.setTitle("ArmaTuHelado5");         
+        s.show();
+
     }
 
-    @FXML
-    void eliminar(ActionEvent event) throws IOException {
-                
-        String selectedItem = pedido.getSelectionModel().getSelectedItem();
-        if(selectedItem != null){
-            String [] c = selectedItem.split(":"); 
-            if(c[0].equals("Base")){
-                message.setText("No puede eliminar una base");
-            }else if(c[0].equals("Topping")){
-                cadenaTopping = selectedItem;
-                //selectedIndex = pedido.getSelectionModel().getSelectedIndex();
-                
-                elementoSeleccionado = pedido.getSelectionModel().getSelectedItem();
-                
-                FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("EliminarComponente.fxml"));
-                try {
-                    Parent root = fxmlloader.load();
-                    Scene scene = new Scene(root, 340, 230);
-                    Stage s = (Stage) btnEliminar.getScene().getWindow();
-                    s.setScene(scene);
-                    s.setTitle("EliminarComponente");
-                    s.show();
-
-                    // Obtener el controlador del cargador
-                    EliminarComponenteController eliminarComponenteController = fxmlloader.getController();
-
-                    // Pasar la referencia de este controlador a EliminarComponenteController
-                    eliminarComponenteController.setArmaTuHelado4Controller(this);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }else if(c[0].equals("Sabor")){
-                cadenaSabor = selectedItem;
-                selectedIndex = pedido.getSelectionModel().getSelectedIndex();
-                
-//                  
-            }
-        }else{
-            message.setText("Seleccione un elemento para eliminar");
-        }    
-    }
+    
     
     @FXML
     void cancelar(ActionEvent event) throws IOException {
@@ -177,35 +150,105 @@ public class ArmaTuHelado4Controller implements Initializable {
     }
     
    
-    
-    public void handleEliminacionConfirmada() {
-        
-        // Coloca aquí la lógica que deseas ejecutar en ArmaTuHelado4Controller
-        // después de que se confirme la eliminación en EliminarComponente.fxml
-        if(cadenaTopping != null){
-            ArrayList<Topping> lst = Topping.cargarSabores();
-            String [] cadena = cadenaTopping.trim().split(":");
-            String tp = cadena[1].trim();
-            for (Topping t : lst) {
-                if (tp.equals(t.getTipoTopping())) {
-                    Double valorF = ArmaTuHelado3Controller.valor3 - t.getPrecio();
-                    
-                    String formatted = String.format("%.2f", valorF);
-                    valorPagar.setText("Valor a pagar: "+formatted);
-                    items.remove(elementoSeleccionado );
-                }
-            }
-        }else if(cadenaSabor != null){
-            ArrayList<Sabor> lst = Sabor.cargarSabores();
-            String [] cadena = cadenaTopping.trim().split(":");
-            for (Sabor s : lst) {
-            if (cadena[1].equals(s.getTipoSabor())) {
-                Double valorF = ArmaTuHelado3Controller.valor3 - Double.parseDouble(s.getPrecio());
-                String formatted = String.format("%.2f", valorF);
-                valorPagar.setText("Valor a pagar: "+formatted);
-                pedido.getItems().remove(selectedIndex);
-                }
-            }
-        }
+    private void mostrarPopUp(String valor) {
+        Stage popUp = new Stage();
+        popUp.initModality(Modality.APPLICATION_MODAL);
+        popUp.initStyle(StageStyle.UTILITY);
+        popUp.setTitle("Confirmar Eliminación");
+
+        Label label = new Label("¿Está seguro de cancelar su compra?");
+        Button botonConfirmar = new Button("Confirmar");
+        Button botonCancelar = new Button("Cancelar");
+
+        botonConfirmar.setOnAction(e -> {
+            message.setText("");
+            items.remove(selectedIndex);
+            valorPagar.setText("Valor a pagar: "+valor);
+            popUp.close();
+        });
+        botonCancelar.setOnAction(e -> {
+            popUp.close();
+        });
+        VBox vbox = new VBox(10);
+        HBox hb = new HBox(10);
+        hb.getChildren().addAll(botonConfirmar,botonCancelar);
+        vbox.getChildren().addAll(label, hb);
+        vbox.setAlignment(javafx.geometry.Pos.CENTER);
+        hb.setAlignment(javafx.geometry.Pos.CENTER);
+        Scene popUpScene = new Scene(vbox, 300, 150);
+        popUp.setScene(popUpScene);
+        popUp.showAndWait();
     }
-}
+   
+    
+    
+    private void validation(){
+        String selectedItem = pedido.getSelectionModel().getSelectedItem();
+        if(selectedItem != null){
+            String [] c = selectedItem.split(":"); 
+            switch (c[0]) {
+                case "Base":
+                    message.setText("No puede eliminar una base");
+                    break;
+                case "Topping":
+                    selectedIndex = pedido.getSelectionModel().getSelectedIndex();
+                    ObservableList<String> lst = pedido.getItems();
+                    String [] cadena = lst.get(selectedIndex).split(":");
+                    String tp = cadena[1].trim();
+                    System.out.println(tp);
+                    ArrayList<Topping> lstTp = Topping.cargarSabores();
+                    String resta = null;
+                    for (Topping t : lstTp) {
+                        if (tp.equals(t.getTipoTopping())) {
+                        ValorPagar = ValorPagar - t.getPrecio();   
+                        resta = String.format("%.2f", ValorPagar);                      
+                        }
+                    }
+                    mostrarPopUp(resta);
+                    break;
+                case "Sabor":
+                    selectedIndex = pedido.getSelectionModel().getSelectedIndex();                  
+                    ObservableList<String> lst1 = pedido.getItems();
+                    String [] cadena1 = lst1.get(selectedIndex).split(":");
+                    String sabor = cadena1[1].trim();
+                    int contador = 0;
+                    for (String string : lst1) {
+                        String [] sb = string.split(":"); 
+                        if (sb[0].equals("Sabor")) {
+                            contador++;
+                        }
+                    }
+                    if (contador==2) {
+                        ArrayList<Sabor> lstSb = Sabor.cargarSabores();
+                        String resta1 = null;
+                        for (Sabor S : lstSb) {
+                            if (sabor.equals(S.getTipoSabor())) {
+                                ValorPagar = ValorPagar - Double.parseDouble(S.getPrecio());
+                                System.out.println(S.getPrecio());
+                                resta1 = String.format("%.2f", ValorPagar);                      
+                            }
+                        }
+                        mostrarPopUp(resta1);  
+                    }else{message.setText("No se puede eliminar");}
+                    
+                    
+
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            message.setText("Seleccione un elemento para eliminar");
+        }  
+    } 
+    
+    private void guardarPedido(){
+        Random random = new Random();
+        int id = random.nextInt(1000) + 1;
+        idPd = String.valueOf(id);
+        Pedido p = new Pedido(String.valueOf(id),InicioController.name,ValorPagar);
+        Pedido.guardarPedido(p);
+        Pedido.serealizarPedido(p);
+    }
+    
+}//Fin

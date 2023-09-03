@@ -4,14 +4,27 @@
  */
 package Clases;
 
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /**
  *
  * @author PC.1
  */
-public class Pedido {
+public class Pedido implements Pagable,Serializable{
     private String idPedido;
     private String nombreCliente;
     private double precio;
+    
+    public Pedido(){
+        
+    }
     
     public Pedido(String idPedido,String nombreCliente,double precio){
         this.idPedido=idPedido;
@@ -19,12 +32,24 @@ public class Pedido {
         this.precio=precio;
     }
     
-    public void guardarPedido(Pedido pedido){
-        
+    public static void guardarPedido(Pedido p){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("pedidos.txt",true))){
+            bw.write(p.idPedido+","+p.nombreCliente+","+String.valueOf(p.precio)+"\n");
+            System.out.println("Pedido guardado con exito");
+            bw.close();
+        }catch(IOException e){
+            
+        }
     }
     
-    public String generarTransaccion(){
-        return "nada";
+    public static void serealizarPedido(Pedido p){
+        try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("pedido"+p.idPedido+".bin"))){
+            output.writeObject(p);
+            System.out.println("Pedido serealizado con exito");
+            output.close();
+        }catch(IOException ex){
+            
+        }
     }
     
     public String getIdPedido(){
@@ -53,5 +78,16 @@ public class Pedido {
     
     public String toString(){
         return "Pedido"+"{idPedido="+this.idPedido+", nombreCliente="+this.nombreCliente+", precio="+this.precio+"}";
+    }
+
+    @Override
+    public void generarTransacción(Pago p) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("pagos.txt",true))){
+            bw.write(p.getIdPago()+","+p.getIdpedido()+","+p.getNombreCLiente()+","+String.valueOf(p.getTotalPagar())+","+p.getFecha()+","+p.getTipo()+"\n");
+            System.out.println("Pedido guardado con exito");
+            bw.close();
+        }catch(IOException e){
+            
+        }
     }
 }
