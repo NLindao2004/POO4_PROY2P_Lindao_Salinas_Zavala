@@ -1,3 +1,4 @@
 685,440,Fernando Zavala,9.39,2023-09-02,T
 49,844,Nehemias Lindao,5.25,2023-09-19,T
 314,845,Nehemias Lindao,9.21,2023-09-02,T
+816,240,Nehemias Lindao,8.36,2023-09-02,T

@@ -194,8 +194,7 @@ public class ArmaTuHelado4Controller implements Initializable {
                     selectedIndex = pedido.getSelectionModel().getSelectedIndex();
                     ObservableList<String> lst = pedido.getItems();
                     String [] cadena = lst.get(selectedIndex).split(":");
-                    String tp = cadena[1].trim();
-                    System.out.println(tp);
+                    String tp = cadena[1].trim();                   
                     ArrayList<Topping> lstTp = Topping.cargarSabores();
                     String resta = null;
                     for (Topping t : lstTp) {
@@ -224,7 +223,6 @@ public class ArmaTuHelado4Controller implements Initializable {
                         for (Sabor S : lstSb) {
                             if (sabor.equals(S.getTipoSabor())) {
                                 ValorPagar = ValorPagar - Double.parseDouble(S.getPrecio());
-                                System.out.println(S.getPrecio());
                                 resta1 = String.format("%.2f", ValorPagar);                      
                             }
                         }

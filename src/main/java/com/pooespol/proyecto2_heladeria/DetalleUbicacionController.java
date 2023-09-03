@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,16 +32,24 @@ public class DetalleUbicacionController implements Initializable {
     @FXML
     private Label lbl2;
     @FXML
+    private Label lblTiempo;
+    @FXML
     private Button btnSalir;
     @FXML
-    private Pane root;
+    private Pane rootPopUp;
+ 
+    
+    private Thread t1;
+    private boolean bandera=true;
+    public static String nombre;
+    public static String horario;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        mostrarImg();    
+        iniciarTarea();
+          
     
     }    
     
@@ -50,15 +59,44 @@ public class DetalleUbicacionController implements Initializable {
         s.close();
     }
     
-    public void mostrarImg(){        
-            try(FileInputStream  input = new FileInputStream (Principal.path+"heladoRosa.jpg")){
-                Image image = new Image(input,730,530,false,false);
-                ImageView ImageView = new ImageView(image);
-                root.getChildren().add(ImageView);
-            }catch(FileNotFoundException fn){
-
-            }catch (Exception ex) {
-
-            }
+    public void iniciarTarea(){
+        t1= new Thread(()->{
+            tiempo();
+        });
+        t1.start();
     }
-}
+    public void tiempo(){
+        for (int i=5;i>=0;i--){
+            String t= String.valueOf(i);
+            Platform.runLater(()->{
+                Stage s= (Stage)rootPopUp.getScene().getWindow();
+                s.setOnCloseRequest((event)->{
+                    bandera=false;
+                    t1.interrupt();});
+                if(t.equals("0")){
+                    salir(new ActionEvent());
+                }
+                lbl1.setText(nombre);
+                lbl2.setText(horario);
+                lblTiempo.setText(t); 
+            });
+            if(bandera){
+                try{
+                    Thread.sleep(1000);
+                }catch(InterruptedException in){
+                    System.out.println(in.getMessage());
+                }
+            }else{
+                break;
+            }
+        }
+      
+       
+        
+        
+    }//Fin Metodo tiempo
+    
+    
+    
+ 
+}//Fin clase

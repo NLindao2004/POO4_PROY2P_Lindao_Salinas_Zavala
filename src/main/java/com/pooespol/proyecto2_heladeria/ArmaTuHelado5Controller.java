@@ -149,7 +149,9 @@ public class ArmaTuHelado5Controller implements Initializable {
             double IVA = v*0.12;
             String formatted1 = String.format("%.2f", IVA);
             iva.setText(String.valueOf(formatted1));
-            total.setText(String.valueOf(IVA+v));
+            double t = IVA+v;
+            String formatted2 = String.format("%.2f", t);
+            total.setText(formatted2);
             mensaje.setText("Acércate a caja para pagar tu pedido");
         });
     }

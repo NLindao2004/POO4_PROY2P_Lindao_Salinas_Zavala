@@ -33,8 +33,11 @@ import javafx.stage.Stage;
 public class UbicacionesController implements Initializable {
 
     @FXML
-    private Pane root;
-
+    private Pane rootUbicaciones;
+    
+    private boolean bandera=true;
+    
+    private Thread inicio;
     /**
      * Initializes the controller class.
      */
@@ -46,55 +49,75 @@ public class UbicacionesController implements Initializable {
     }    
     
     public void iniciarTarea(){
-        Thread inicio = new Thread(new Runnable(){
-            public void run(){
-                mostrarIcono();
-            }
+        inicio = new Thread(()->{
+            mostrarIcono();
         });
         inicio.start();
+       
+    }
+    
+    public Image obtenerImagen(){
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
+                img = new Image(file, 45, 45, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        return img;
     }
     
     public void mostrarIcono() {
-    ArrayList<Local> lista = Local.cargarLocales();
+            ArrayList<Local> lista = Local.cargarLocales();
+            Image img=obtenerImagen();
 
-        for (Local l : lista) {
-            try (FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
-                Image image = new Image(file, 45, 45, false, false);
-                ImageView smallImageView = new ImageView(image);
-                
-                Platform.runLater(() -> {
-                root.getChildren().add(smallImageView);
-                smallImageView.setLayoutX(l.getCoordenadaX());
-                smallImageView.setLayoutY(l.getCoordenadaY());
-                smallImageView.setOnMouseClicked(event -> {
-                    mostrarEscena(); 
-                });
-                
-                });
+            for (Local l : lista) {
+                    ImageView smallImageView = new ImageView(img);
+                    Platform.runLater(() -> {
+                        Stage s= (Stage)rootUbicaciones.getScene().getWindow();
+                        s.setOnCloseRequest((event)->{
+                            bandera=false;
+                            inicio.interrupt();});
+                        rootUbicaciones.getChildren().add(smallImageView);
+                        smallImageView.setLayoutX(l.getCoordenadaX());
+                        smallImageView.setLayoutY(l.getCoordenadaY());
 
-                Random random = new Random();
-                int randomNumber = random.nextInt(10) + 1;
+                        smallImageView.setOnMouseClicked(event -> {
+                            DetalleUbicacionController.nombre=l.getNombre();
+                            DetalleUbicacionController.horario=l.getHorario();
+                            mostrarEscena(); 
+                        });
 
-                try {
-                    Thread.sleep(1000 * randomNumber);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                    });
+                    if(bandera){  
+                        Random random = new Random();
+                        int randomNumber = random.nextInt(10) + 1;
+                        try {
+                            Thread.sleep(1000 * randomNumber);
+                        } catch (InterruptedException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    }else{
+                        break;
+                    }         
             }
-        }
     }
+    
     public void mostrarEscena() {
-    try {
+    
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("DetalleUbicacion.fxml"));
-        Parent root = fxmlloader.load();
+        Parent root=null;
+        try{
+            root = fxmlloader.load();
+        }catch(IOException io){
+            System.out.println(io.getMessage());
+        }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) root.getScene().getWindow();
+        Stage stage= new Stage();
         stage.setScene(scene);
+        stage.setTitle("Detalle Ubicación");
         stage.show();
-    } catch (IOException ex) {
-        ex.printStackTrace();
+    
+        
     }
-}
+
 }
