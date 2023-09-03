@@ -1,0 +1,30 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 sept 2023, 21:10:27
+    Author     : Fer
+*/
+
+#lblPaso1{
+    -fx-font-family: Candara;
+    -fx-font-weight: 900;
+    -fx-text-fill: white;
+}
+
+#btnYogurt{
+    -fx-background-color: #E1B4D4;
+}
+#btnHelado{
+    -fx-background-color: #E1B4D4;
+   
+}
+#btnVegano{
+    -fx-background-color: #E1B4D4;
+  
+}
+#btnContinuar{
+    -fx-background-color: #E1B4D4;
+ 
+}

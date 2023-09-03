@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 3 sep. 2023, 00:32:03
+    Author     : Fer
+*/
+
+#lblPregunta{
+    -fx-font-family: Candara;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+#btnAceptar{
+    -fx-background-color:  #E1B4D4;
+}
+#btnCancelar{
+    -fx-background-color:  #E1B4D4;
+}

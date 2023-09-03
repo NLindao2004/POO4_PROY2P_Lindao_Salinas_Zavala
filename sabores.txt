@@ -1,0 +1,16 @@
+Vainilla,1.50
+Cheescake Mora,2.00
+Frutas del Bosque,2.25
+Delicia de Mora,2.25
+Caramelo,1.75
+Cafe,2.00
+Tiramisu,2.50
+Canela Cremosa,1.60
+Mango,2.00
+Tango,2.20
+Chocolate,1.80
+Menta,1.50
+Fresa,1.80
+Frambuesa,2.10
+Limon,1.50 
+Merengue,1.70

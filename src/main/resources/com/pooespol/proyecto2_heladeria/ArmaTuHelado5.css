@@ -1,0 +1,35 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 sept 2023, 22:04:04
+    Author     : Fer
+*/
+
+#lblPago{
+    -fx-font-family: Candara;
+    -fx-font-weight: bold;
+}
+#lblDetallePago{
+    -fx-font-family: Candara;
+    -fx-font-weight: bold;
+}
+#lblValorPagar{
+    -fx-font-family: Candara;
+}
+#lblAdicionalTarjeta{
+    -fx-font-family: Candara;
+}
+#lblIVA{
+    -fx-font-family: Candara;
+}
+#lblTotalPagar{
+    -fx-font-family: Candara;
+}
+#btnConfirmar{
+    -fx-background-color:  #E1B4D4;
+}
+#btnCancelar{
+    -fx-background-color:  #E1B4D4;
+}

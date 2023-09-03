@@ -1,0 +1,28 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 sept 2023, 20:58:23
+    Author     : Fer
+*/
+
+#lblMarca{
+    -fx-font-family: Candara;
+    -fx-font-weight: 900;
+}
+
+#lbl1{
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+}
+
+#lbl2{
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+}
+
+#lblTiempo{
+    -fx-font-weight: 900;
+    
+}

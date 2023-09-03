@@ -1,0 +1,15 @@
+786,Fernando,8.95
+440,Fernando,7.7
+844,Nehemias,4.300000000000002
+845,Fernando,7.55
+240,Nehemias,6.85
+754,Fernando,4.749999999999998
+934,Fernando,4.199999999999999
+385,Fernando,5.400000000000001
+663,Fernando Zavala,3.2
+259,Fernando Zavala,5.249999999999999
+497,Nehemias Lindao,9.7
+574,Fernando Zavala,10.95
+136,Fernando Zavala,5.25
+519,Fernando Zavala,5.3
+138,Fernando Zavala,5.05
