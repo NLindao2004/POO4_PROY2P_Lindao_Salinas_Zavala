@@ -9,18 +9,21 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista PedidosGenerados.fxml.
  */
+
 public class PedidosGeneradosController implements Initializable {
 
+    
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     *
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

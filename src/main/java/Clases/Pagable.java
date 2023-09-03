@@ -5,11 +5,13 @@
 package Clases;
 
 /**
- *
- * @author PC.1
+ * La interfaz Pagable define un contrato para clases que pueden generar transacciones de pago.
  */
 public interface Pagable {
-    void generarTransacción(Pago p); // Método para calcular el total a pagar
-    
+    /**
+     * Método para calcular el total a pagar y generar una transacción de pago.
+     * @param p El objeto Pago que contiene la información del pago.
+     */
+    void generarTransacción(Pago p);
 }
 

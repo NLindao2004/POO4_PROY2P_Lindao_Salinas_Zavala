@@ -23,66 +23,164 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Locale;
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la tercera etapa de armar tu helado.
  */
 public class ArmaTuHelado3Controller implements Initializable {
     
-    private  double ck1 = 0 ;
-    private  double ck2 = 0 ;
-    private  double ck3 = 0 ;
-    private  double ck4 = 0 ;
-    private  double ck5 = 0 ;
-    private  double ck6 = 0 ;
-    private  double totalTopping = 0 ;
-    public static double valor3 = 0;
-    private String c1= "";
-    private String c2= "";
-    private String c3= "";
-    private String c4= "";
-    private String c5= "";
-    private String c6= "";
+    /**
+     * Variable para almacenar el costo del primer topping seleccionado.
+     */
+    private double ck1 = 0;
+
+    /**
+     * Variable para almacenar el costo del segundo topping seleccionado.
+     */
+    private double ck2 = 0;
+
+    /**
+     * Variable para almacenar el costo del tercer topping seleccionado.
+     */
+    private double ck3 = 0;
+
+    /**
+     * Variable para almacenar el costo del cuarto topping seleccionado.
+     */
+    private double ck4 = 0;
+
+    /**
+     * Variable para almacenar el costo del quinto topping seleccionado.
+     */
+    private double ck5 = 0;
+
+    /**
+     * Variable para almacenar el costo del sexto topping seleccionado.
+     */
+    private double ck6 = 0;
     
+    /**
+     * Almacena el valor total de la orden del helado en esta etapa.
+     */
+    
+    /**
+     * Almacena el costo total de los toppings seleccionados por el usuario.
+     */
+    
+    private  double totalTopping = 0 ;
+
+    /**
+     * Almacena el valor total de la orden del helado en esta etapa.
+     */
+    public static double valor3 = 0;
+
+    /**
+     * Almacena el nombre del primer topping seleccionado.
+     */
+    private String c1 = "";
+
+    /**
+     * Almacena el nombre del segundo topping seleccionado.
+     */
+    private String c2 = "";
+
+    /**
+     * Almacena el nombre del tercer topping seleccionado.
+     */
+    private String c3 = "";
+
+    /**
+     * Almacena el nombre del cuarto topping seleccionado.
+     */
+    private String c4 = "";
+
+    /**
+     * Almacena el nombre del quinto topping seleccionado.
+     */
+    private String c5 = "";
+
+    /**
+     * Almacena el nombre del sexto topping seleccionado.
+     */
+    private String c6 = "";
+    
+    
+    /**
+     * Boton para continuar a la siguiente escena.
+     */
     @FXML
     private Button btnContinuar;
 
+    /**
+     * CheckBox para seleccionar el primer topping.
+     */
     @FXML
     private CheckBox chk1;
 
+    /**
+     * CheckBox para seleccionar el segundo topping.
+     */
     @FXML
     private CheckBox chk2;
 
+    /**
+     * CheckBox para seleccionar el tercer topping.
+     */
     @FXML
     private CheckBox chk3;
 
+    /**
+     * CheckBox para seleccionar el cuarto topping.
+     */
     @FXML
     private CheckBox chk4;
 
+    /**
+     * CheckBox para seleccionar el quinto topping.
+     */
     @FXML
     private CheckBox chk5;
 
+    /**
+     * CheckBox para seleccionar el sexto topping.
+     */
     @FXML
     private CheckBox chk6;
 
+    /**
+     * ImageView para mostrar una imagen relacionada con la elección del helado.
+     */
     @FXML
     private ImageView imgArmaTuHelado3;
-    
+
+    /**
+     * Etiqueta para mostrar el valor a pagar por el helado personalizado.
+     */
     @FXML
     private Label valorPagar;
+    
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador y muestra la imagen y el valor a pagar inicial.
+     *
+     * @param url La ubicación relativa del archivo FXML.
+     * @param rb ResourceBundle que se puede utilizar para localizar
+     * objetos de IU.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         mostrarImg();
         Double valorTuHelado3 = ArmaTuHelado2Controller.valor2;
-        String formatted = String.format(Locale.US,"%.2f", valorTuHelado3);
-        valorPagar.setText("Valor a pagar: "+formatted);
+        String formatted = String.format(Locale.US, "%.2f", valorTuHelado3);
+        valorPagar.setText("Valor a pagar: " + formatted);
     }   
 
+    /**
+     * Maneja el evento "Continuar" para avanzar a la siguiente etapa y registra
+     * los toppings seleccionados en la lista de la orden.
+     *
+     * @param event El evento de acción del botón.
+     * @throws IOException Si ocurre un error de E/S al cargar la siguiente vista.
+     */
     @FXML
     void continuar(ActionEvent event) throws IOException {
         topicSelect();
@@ -93,43 +191,55 @@ public class ArmaTuHelado3Controller implements Initializable {
         s.setScene(scene);
         s.setTitle("ArmaTuHelado4");         
         s.show();
-            
     }
     
-    public void mostrarImg(){        
-            try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
-                Image image = new Image(input,730,530,false,false);
-                imgArmaTuHelado3.setImage(image);             
-            }catch(FileNotFoundException fn){
-
-            }catch (Exception ex) {
-
-            }
+    /**
+     * Muestra una imagen en la interfaz gráfica.
+     */
+    public void mostrarImg() {        
+        try (FileInputStream input = new FileInputStream(Principal.path + "escena5.jpg")) {
+            Image image = new Image(input, 730, 530, false, false);
+            imgArmaTuHelado3.setImage(image);             
+        } catch (FileNotFoundException fn) {
+            // Manejar excepción si la imagen no se encuentra
+        } catch (Exception ex) {
+            // Manejar otras excepciones posibles
+        }
     }
      
+    /**
+     * Maneja la selección del CheckBox 1 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 1.
+     */
     @FXML
     void checkBox1(ActionEvent event) {
-        String cadena =  chk1.getText();
-        String [] lista = cadena.trim().split("-");
+        String cadena = chk1.getText();
+        String[] lista = cadena.trim().split("-");
         Double precioTopping = Double.parseDouble(lista[1]); 
         if (chk1.isSelected()) {
-            c1= "Topping: "+cadena;
+            c1 = "Topping: " + cadena;
             ck1 = precioTopping;
-            totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
-            Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-            String formatted = String.format(Locale.US,"%.2f", ValorTotal);
-            valorPagar.setText("Valor a pagar: "+formatted);
+            totalTopping = ck1 + ck2 + ck3 + ck4 + ck5 + ck6;
+            Double ValorTotal = totalTopping + ArmaTuHelado2Controller.valor2;
+            String formatted = String.format(Locale.US, "%.2f", ValorTotal);
+            valorPagar.setText("Valor a pagar: " + formatted);
             valor3 = ValorTotal;
-        }else{
-           ck1 = 0;
-           c1= null;
-           totalTopping =ck1+ck2+ck3+ck4+ck5+ck6;
-           Double ValorTotal= totalTopping+ArmaTuHelado2Controller.valor2;
-           String formatted = String.format(Locale.US,"%.2f", ValorTotal);
-           valorPagar.setText("Valor a pagar: "+formatted);
-           valor3 = ValorTotal;
-       }
+        } else {
+            ck1 = 0;
+            c1 = null;
+            totalTopping = ck1 + ck2 + ck3 + ck4 + ck5 + ck6;
+            Double ValorTotal = totalTopping + ArmaTuHelado2Controller.valor2;
+            String formatted = String.format(Locale.US, "%.2f", ValorTotal);
+            valorPagar.setText("Valor a pagar: " + formatted);
+            valor3 = ValorTotal;
+        }
     }
+    /**
+     * Maneja la selección del CheckBox 2 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 2.
+     */
     
      @FXML
     void checkBox2(ActionEvent event) {
@@ -154,6 +264,13 @@ public class ArmaTuHelado3Controller implements Initializable {
            valor3 = ValorTotal;
        }
     }
+    
+    /**
+     * Maneja la selección del CheckBox 3 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 3.
+     */
+    
 
     @FXML
     void checkBox3(ActionEvent event) {
@@ -178,6 +295,12 @@ public class ArmaTuHelado3Controller implements Initializable {
            valor3 = ValorTotal;
        }
     }
+    
+    /**
+     * Maneja la selección del CheckBox 4 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 4.
+     */
 
     @FXML
     void checkBox4(ActionEvent event) {
@@ -202,6 +325,12 @@ public class ArmaTuHelado3Controller implements Initializable {
            valor3 = ValorTotal;
        }
     }
+    /**
+     * Maneja la selección del CheckBox 5 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 5.
+     */
+    
 
     @FXML
     void checkBox5(ActionEvent event) {
@@ -226,6 +355,12 @@ public class ArmaTuHelado3Controller implements Initializable {
            valor3 = ValorTotal;
        }
     }
+    
+    /**
+     * Maneja la selección del CheckBox 6 para los toppings.
+     *
+     * @param event El evento de acción del CheckBox 6.
+     */
 
     @FXML
     void checkBox6(ActionEvent event) {
@@ -250,7 +385,10 @@ public class ArmaTuHelado3Controller implements Initializable {
            valor3 = ValorTotal;
        }
     }
-
+    
+     /**
+     * Registra los toppings seleccionados en la lista de la orden.
+     */
     public void topicSelect(){
         ArrayList<String> toppings = new ArrayList();
         toppings.add(c1);

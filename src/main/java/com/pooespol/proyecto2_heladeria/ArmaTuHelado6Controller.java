@@ -17,27 +17,38 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista ArmaTuHelado6.fxml.
  */
 public class ArmaTuHelado6Controller implements Initializable {
     
+    /**
+     * ImageView para mostrar una imagen.
+     */
     @FXML
     private ImageView img;
-    
+    /**
+     * ImageView para mostrar otra imagen.
+     */
     @FXML
     private ImageView imgArmaTuHelado6;
-
+    /**
+     * Etiqueta para mostrar el mensaje de cierre de ventana.
+     */
     @FXML
     private Label lblCierre;
-
+    /**
+     * Etiqueta para mostrar información sobre el pedido.
+     */
     @FXML
     private Label lblPedido;
     
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     * 
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,6 +59,9 @@ public class ArmaTuHelado6Controller implements Initializable {
         lblPedido.setText("Tu pedido es el #"+ArmaTuHelado4Controller.idPd+". Te llamaremos cuando este listo");
     }    
     
+     /**
+     * Muestra una imagen en el ImageView `imgArmaTuHelado6`.
+     */
     public void mostrarImg(){        
         try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
             Image image = new Image(input,730,530,false,false);
@@ -60,6 +74,9 @@ public class ArmaTuHelado6Controller implements Initializable {
         
     }
     
+     /**
+     * Muestra una imagen en el ImageView `img`.
+     */
     public void mostrarImg2(){        
         try(FileInputStream  input = new FileInputStream (Principal.path+"Carrito_Helados.gif")){
             Image image = new Image(input);
@@ -72,6 +89,9 @@ public class ArmaTuHelado6Controller implements Initializable {
         
     }
     
+    /**
+     * Ejecuta un hilo que cuenta hacia atrás y cierra la ventana después de cierto tiempo.
+     */
     public void hilo() {
         Thread hilo = new Thread(() -> {
             for (int i = 5; i > 0; i--) { 
@@ -109,7 +129,9 @@ public class ArmaTuHelado6Controller implements Initializable {
     }
 
     
-    
+    /**
+     * Elimina el texto de la etiqueta `lblPedido`.
+     */
     public void orden(){
         lblPedido.setText("");
     }

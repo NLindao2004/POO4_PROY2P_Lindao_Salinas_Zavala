@@ -34,43 +34,78 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista ArmaTuHelado4.fxml.
  */
 public class ArmaTuHelado4Controller implements Initializable {
 
+     /**
+     * Lista de elementos seleccionados en la orden del usuario.
+     */
     ArrayList<String> lista = ArmaTuHelado1Controller.orden ;
+    /**
+     * Índice seleccionado en la lista de elementos.
+     */
     private  int selectedIndex = 0;
+     /**
+     * Lista observable para mostrar los elementos seleccionados en la vista.
+     */
     private ObservableList<String> items;
+    /**
+     * Valor total a pagar por la orden.
+     */
     public static double ValorPagar =ArmaTuHelado3Controller.valor3;
+    /**
+     * ID único del pedido.
+     */
     public static String idPd = null;       
  
-
+    /**
+     * Botón para cancelar el proceso.
+     */
     @FXML
     private Button btnCancelar;
-
+    
+    
+    /**
+     * Botón para confirmar el pedido.
+     */
     @FXML
     private Button btnConfirmar;
 
+    /**
+     * Botón para eliminar elementos de la orden.
+     */
     @FXML
     private Button btnEliminar;
-
-    @FXML
-    private ListView<String> pedido;
-
-    @FXML
-    private Label valorPagar;
-    
-    @FXML 
-    private ImageView imgArmaTuHelado4;
-    
-    @FXML
-    private Label message;
     
     /**
-     * Initializes the controller class.
+     * Lista de elementos seleccionados.
+     */
+    @FXML
+    private ListView<String> pedido; 
+    
+    /**
+     * Etiqueta que muestra el valor total a pagar.
+     */
+    @FXML
+    private Label valorPagar; 
+    
+    /**
+     * Imagen de fondo.
+     */
+    @FXML 
+    private ImageView imgArmaTuHelado4; 
+    
+    /**
+     * Etiqueta para mostrar mensajes de validación.
+     */
+    @FXML 
+    private Label message;  
+    
+    /**
+     * Inicializa el controlador y configura la vista.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,7 +123,9 @@ public class ArmaTuHelado4Controller implements Initializable {
        
     }    
     
-    
+    /**
+     * Muestra una imagen en la vista.
+     */
     public void mostrarImg(){        
         try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
             Image image = new Image(input,730,530,false,false);
@@ -100,6 +137,9 @@ public class ArmaTuHelado4Controller implements Initializable {
         }
     }
     
+    /**
+     * Maneja el evento de confirmación de la orden.
+     */
     @FXML
     void confirmar(ActionEvent event) throws IOException{
         guardarPedido();
@@ -114,7 +154,9 @@ public class ArmaTuHelado4Controller implements Initializable {
     }
 
     
-    
+    /**
+     * Maneja el evento de cancelación de la orden.
+     */
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("CancelarCompra.fxml"));
@@ -126,12 +168,20 @@ public class ArmaTuHelado4Controller implements Initializable {
         s.show();
     }
     
+    /**
+     * Calcula el valor total a pagar y lo muestra en la vista.
+     */
     public void valorFinal(){
         Double valorF = ArmaTuHelado3Controller.valor3;
         String formatted = String.format(Locale.US,"%.2f", valorF);
         valorPagar.setText("Valor a pagar: "+formatted);
     }
-
+    
+    /**
+     * Carga la lista de elementos de la orden.
+     * @return ArrayList con los elementos de la orden.
+     */
+    
     public ArrayList<String> cargarList(){
         ArrayList<String> l = new ArrayList();
         for (String cadena : lista) {
@@ -150,7 +200,10 @@ public class ArmaTuHelado4Controller implements Initializable {
         return l;
     }
     
-   
+    /**
+     * Muestra un cuadro de diálogo de confirmación antes de eliminar un elemento de la orden.
+     * @param valor El valor total después de eliminar el elemento.
+     */
     private void mostrarPopUp(String valor) {
         Stage popUp = new Stage();
         popUp.initModality(Modality.APPLICATION_MODAL);
@@ -182,7 +235,9 @@ public class ArmaTuHelado4Controller implements Initializable {
     }
    
     
-    
+    /**
+     * Valida y maneja la eliminación de elementos de la orden.
+     */
     private void validation(){
         String selectedItem = pedido.getSelectionModel().getSelectedItem();
         if(selectedItem != null){
@@ -241,6 +296,9 @@ public class ArmaTuHelado4Controller implements Initializable {
         }  
     } 
     
+    /**
+     * Guarda el pedido actual.
+     */
     private void guardarPedido(){
         Random random = new Random();
         int id = random.nextInt(1000) + 1;

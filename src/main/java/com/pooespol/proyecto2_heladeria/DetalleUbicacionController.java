@@ -19,32 +19,61 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista DetalleUbicacion.fxml.
  */
 public class DetalleUbicacionController implements Initializable {
 
-
+    /**
+     * Etiqueta para mostrar nombre ubicacion.
+     */
     @FXML
     private Label lbl1;
+    /**
+     * Etiqueta para mostrar nombre horario.
+     */
     @FXML
     private Label lbl2;
+    /**
+     * Etiqueta para mostrar tiempo restante antes de cerrarse la ventana.
+     */
     @FXML
     private Label lblTiempo;
+    /**
+     * Botón para salir de la vista.
+     */
     @FXML
     private Button btnSalir;
+    /**
+     * Panel principal de la ventana emergente.
+     */
     @FXML
     private Pane rootPopUp;
  
-    
-    private Thread t1;
-    private boolean bandera=true;
-    public static String nombre;
-    public static String horario;
     /**
-     * Initializes the controller class.
+     * Hilo para la actualización del tiempo de cierre.
+     */
+    private Thread t1;
+    /**
+     * Bandera para interrumpir el proceso del hilo cuando se cierra la ventana.
+     */
+    private boolean bandera=true;
+    /**
+     * Nombre de la ubicación.
+     */
+    public static String nombre;
+    /**
+     * Horario de la ubicación.
+     */
+    public static String horario;
+    
+    
+    /**
+     * Inicializa el controlador.
+     *
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,18 +82,30 @@ public class DetalleUbicacionController implements Initializable {
     
     }    
     
+    /**
+     * Maneja el evento de salida de la vista.
+     *
+     * @param event Evento de acción.
+     */
     @FXML
     private void salir(ActionEvent event) {
         Stage s = (Stage)btnSalir.getScene().getWindow();
         s.close();
     }
     
+     /**
+     * Inicia la tarea de actualización del tiempo.
+     */
     public void iniciarTarea(){
         t1= new Thread(()->{
             tiempo();
         });
         t1.start();
     }
+    
+    /**
+     * Actualiza el tiempo de cierre y muestra la información en las etiquetas.
+     */
     public void tiempo(){
         for (int i=5;i>=0;i--){
             String t= String.valueOf(i);

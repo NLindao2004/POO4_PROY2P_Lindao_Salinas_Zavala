@@ -37,55 +37,86 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista ArmaTuHelado5.fxml.
  */
 public class ArmaTuHelado5Controller implements Initializable {
     
-    
+    /**
+     * Almacena el tipo de pago: "E" para efectivo, "T" para tarjeta.
+     */
     private String tipo = null;
-
+    
+    /**
+     * Campo para ingresar un valor adicional en caso de pago con tarjeta.
+     */
     @FXML
     private TextField adicionalT;
-
+    
+    /**
+     * Botón para cancelar la operación.
+     */
     @FXML
     private Button btnCancelar;
-
+    
+    /**
+     * Botón para confirmar el pago.
+     */
     @FXML
     private Button btnConfirmar;
-
+    /**
+     * Imagen de fondo.
+     */
     @FXML
     private ImageView imgArmaTuHelado5;
-
+    /**
+     * Campo para mostrar el valor del Impuesto al Valor Agregado (IVA).
+     */
     @FXML
     private TextField iva;
-
+    /**
+     * Etiqueta para mostrar mensajes de validación.
+     */
     @FXML
     private Label mensaje;
-
+    /**
+     * Opción de pago en efectivo.
+     */
     @FXML
     private RadioButton op1;
-
+    /**
+     * Opción de pago con tarjeta.
+     */
     @FXML
     private RadioButton op2;
-
+    /**
+     * Contenedor para campos de entrada relacionados con la tarjeta.
+     */
     @FXML
     private VBox seccionField;
-
+    /**
+     * Contenedor para etiquetas relacionadas con la tarjeta.
+     */
     @FXML
     private VBox seccionLabel;
-
+    /**
+     * Campo para mostrar el valor total a pagar.
+     */
     @FXML
     private TextField total;
-
+    /**
+     * Campo para mostrar el valor del pedido.
+     */
     @FXML
     private TextField valor;
 
       
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     * 
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,12 +129,20 @@ public class ArmaTuHelado5Controller implements Initializable {
         tarjeta();
     } 
     
+     /**
+     * Maneja el evento de cancelar y cierra la ventana actual.
+     * @param event Evento de acción del botón Cancelar.
+     */
     @FXML
     void cancelar(ActionEvent event) {
         Stage stage = (Stage) btnCancelar.getScene().getWindow(); 
         stage.close(); 
     }
-
+    
+    /**
+     * Maneja el evento de confirmar el pago y realiza validaciones antes de continuar.
+     * @param event Evento de acción del botón Confirmar.
+     */
     @FXML
     void confirmar(ActionEvent event) {
         try {
@@ -115,7 +154,10 @@ public class ArmaTuHelado5Controller implements Initializable {
             }     
     }  
     
-    
+    /**
+     * Cambia la escena actual a la vista ArmaTuHelado6.fxml.
+     * @throws IOException Si ocurre un error al cargar la nueva vista.
+     */
     public void cambiarEscena() throws IOException{
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado6.fxml"));
         Parent root = fxmlloader.load();
@@ -127,7 +169,9 @@ public class ArmaTuHelado5Controller implements Initializable {
     }
     
     
-    
+    /**
+     * Muestra una imagen de fondo en la interfaz.
+     */
     public void mostrarImg(){        
         try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
             Image image = new Image(input,730,530,false,false);
@@ -139,6 +183,9 @@ public class ArmaTuHelado5Controller implements Initializable {
         }
         
     }
+     /**
+     * Configura la lógica relacionada con el pago en efectivo.
+     */
     
     private void efectivo(){
             tipo = "E";
@@ -186,6 +233,9 @@ public class ArmaTuHelado5Controller implements Initializable {
         });
     }
     
+    /**
+     * Configura la lógica relacionada con el pago con tarjeta.
+     */
     private void tarjeta(){
         op2.setOnAction(e->{
             tipo = "T";

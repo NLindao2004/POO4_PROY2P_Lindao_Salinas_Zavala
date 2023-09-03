@@ -12,14 +12,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author PC.1
+ * La clase Principal es la entrada principal de la aplicación JavaFX.
+ * Extiende la clase Application y configura la ventana principal de la aplicación.
  */
+
 public class Principal extends Application{
     private static Scene scene;
+    /**
+     * La ruta base para los recursos de la aplicación.
+     */
     public static String path = "src/main/resources/com/pooespol/proyecto2_heladeria/";
 
-    
+    /**
+     * El método start es el punto de inicio de la aplicación JavaFX.
+     *
+     * @param stage El escenario principal de la aplicación.
+     * @throws IOException Si ocurre un error durante la carga de la interfaz gráfica.
+     */
     @Override
     public void start(Stage stage) throws IOException{
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Inicio.fxml"));
@@ -31,7 +40,11 @@ public class Principal extends Application{
         stage.show();
     }
     
-    
+     /**
+     * El método principal que inicia la aplicación.
+     *
+     * @param args Argumentos de línea de comandos (no se utilizan en esta aplicación).
+     */
     public static void main(String[] args) {
         launch();
     }

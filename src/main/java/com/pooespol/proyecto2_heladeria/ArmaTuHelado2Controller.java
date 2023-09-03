@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,57 +26,110 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import com.pooespol.proyecto2_heladeria.ArmaTuHelado1Controller;
-import java.util.Locale;
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * El controlador para la escena "ArmaTuHelado2".
  */
 public class ArmaTuHelado2Controller implements Initializable {
-
-    private boolean cbx1Select = false;
-    private boolean cbx2Select = false;
-    private static double valorcb1 = 0;
-    private static double valorcb2 = 0;
-    public static double valor2 = 0;
-    private String sabor_1 = null;
-    private String sabor_2 = null;
-    
-    @FXML
-    private ImageView imgArmaTuHelado2;
-    @FXML
-    private Label valorTotal;
-    @FXML
-    private ComboBox<Sabor> cb1;
-    @FXML
-    private ComboBox<Sabor> cb2;
-    @FXML
-    private Button btnContinuar;
-    @FXML
-    private Label message;
-    
+    // Atributos de la clase ArmaTuHelado2Controller.
 
     /**
-     * Initializes the controller class.
+     * Bandera para verificar si se seleccionó el primer sabor.
+     */
+    private boolean cbx1Select = false;
+    
+    /**
+     * Bandera para verificar si se seleccionó el segundo sabor.
+     */
+    private boolean cbx2Select = false;
+    
+    /**
+     * Valor del primer sabor seleccionado.
+     */
+    private static double valorcb1 = 0;
+    
+    /**
+     * Valor del segundo sabor seleccionado.
+     */
+    private static double valorcb2 = 0;
+    
+    /**
+     * Valor total de la orden.
+     */
+    public static double valor2 = 0;
+    
+    /**
+     * Nombre del primer sabor seleccionado.
+     */
+    private String sabor_1 = null;
+    
+    /**
+     * Nombre del segundo sabor seleccionado.
+     */
+    private String sabor_2 = null;
+    
+    /**
+     * ImagenView para mostrar una imagen en la interfaz gráfica.
+     */
+    @FXML
+    private ImageView imgArmaTuHelado2;
+
+    /**
+     * Etiqueta para mostrar el valor total de la orden.
+     */
+    @FXML
+    private Label valorTotal;
+
+    /**
+     * ComboBox para seleccionar el primer sabor.
+     */
+    @FXML
+    private ComboBox<Sabor> cb1;
+
+    /**
+     * ComboBox para seleccionar el segundo sabor.
+     */
+    @FXML
+    private ComboBox<Sabor> cb2;
+
+    /**
+     * Botón para continuar con la selección de sabores.
+     */
+    @FXML
+    private Button btnContinuar;
+
+    /**
+     * Etiqueta para mostrar mensajes de error o información.
+     */
+    @FXML
+    private Label message;
+
+    /**
+     * Inicializa el controlador.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         mostrarImg();
         cargarCB();
     }    
     
+    /**
+     * Método para mostrar la imagen en la interfaz.
+     */
     public void mostrarImg(){        
-            try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
-                Image image = new Image(input,730,530,false,false);
-                imgArmaTuHelado2.setImage(image);             
-            }catch(FileNotFoundException fn){
+        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+            Image image = new Image(input, 730, 530, false, false);
+            imgArmaTuHelado2.setImage(image);             
+        } catch(FileNotFoundException fn) {
 
-            }catch (Exception ex) {
+        } catch (Exception ex) {
 
-            }
+        }
     }
 
+    /**
+     * Método que se ejecuta al seleccionar el primer sabor.
+     */
     @FXML
     private void sabor1() {
         cbx1Select = true ;
@@ -85,13 +139,16 @@ public class ArmaTuHelado2Controller implements Initializable {
             sabor_1 = "Sabor: "+selectedItem.getTipoSabor()+"-"+selectedItem.getPrecio();
             String precio = selectedItem.getPrecio();
             valorcb1 = Double.parseDouble(precio);
-            Double total = ArmaTuHelado1Controller.valor+valorcb1+valorcb2;
+            Double total = ArmaTuHelado1Controller.valor + valorcb1 + valorcb2;
             String formatted = String.format(Locale.US,"%.2f", total);
-            valor2= total;
+            valor2 = total;
             valorTotal.setText("Valor a pagar: "+formatted);
         }
     }
 
+    /**
+     * Método que se ejecuta al seleccionar el segundo sabor.
+     */
     @FXML
     private void sabor2() {
         cbx2Select = true;
@@ -101,25 +158,30 @@ public class ArmaTuHelado2Controller implements Initializable {
             sabor_2 = "Sabor: "+selectedItem.getTipoSabor()+"-"+selectedItem.getPrecio();
             String precio = selectedItem.getPrecio();
             valorcb2 = Double.parseDouble(precio);
-            Double total = ArmaTuHelado1Controller.valor+valorcb2+valorcb1;
+            Double total = ArmaTuHelado1Controller.valor + valorcb2 + valorcb1;
             String formatted = String.format(Locale.US,"%.2f", total);
-            valor2= total;
+            valor2 = total;
             valorTotal.setText("Valor a pagar: "+formatted);
-            }
+        }
     }
 
+    /**
+     * Método que se ejecuta al hacer clic en el botón "Continuar".
+     * @param event El evento de acción.
+     * @throws IOException Si ocurre un error al cargar la siguiente escena.
+     */
     @FXML
     private void continuar(ActionEvent event) throws IOException {
         saborSelect();
         try {
             if (cbx1Select || cbx2Select ) {
                 FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado3.fxml"));
-                    Parent root = fxmlloader.load();
-                    Scene scene = new Scene(root, 730, 530);
-                    Stage s = (Stage) btnContinuar.getScene().getWindow();
-                    s.setScene(scene);
-                    s.setTitle("ArmaTuHelado3");         
-                    s.show();
+                Parent root = fxmlloader.load();
+                Scene scene = new Scene(root, 730, 530);
+                Stage s = (Stage) btnContinuar.getScene().getWindow();
+                s.setScene(scene);
+                s.setTitle("ArmaTuHelado3");         
+                s.show();
             } else {
                 throw new IncompleteStageException(); 
             }
@@ -128,13 +190,18 @@ public class ArmaTuHelado2Controller implements Initializable {
         } 
     }
     
+    /**
+     * Método para cargar los sabores en los ComboBox.
+     */
     public void cargarCB(){
         ArrayList<Sabor> lista= Sabor.cargarSabores();
         cb1.getItems().addAll(lista);
         cb2.getItems().addAll(lista);
-        
     }
     
+    /**
+     * Método para agregar los sabores seleccionados a la orden.
+     */
     public void saborSelect(){
         if (sabor_1 != null && sabor_2!= null) {
             ArmaTuHelado1Controller.orden.add(sabor_1);

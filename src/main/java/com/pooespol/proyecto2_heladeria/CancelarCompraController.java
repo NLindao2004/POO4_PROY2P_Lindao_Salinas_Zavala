@@ -22,23 +22,31 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista CancelarCompra.fxml.
  */
 public class CancelarCompraController implements Initializable {
     
+    /**
+     * Botón para cancelar la compra.
+     */
     @FXML
     private Button btnCancelar;
-
+    /**
+     * Botón para aceptar la cancelación.
+     */
     @FXML
     private Button btnAceptar;
-
+    /**
+     * ImageView para mostrar una imagen de cancelación.
+     */
     @FXML 
     private ImageView imgCancelar;    
     
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     *
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,6 +54,12 @@ public class CancelarCompraController implements Initializable {
         mostrarImg();
     }    
     
+    /**
+     * Maneja el evento de cancelación y vuelve a la vista ArmaTuHelado4.fxml.
+     *
+     * @param event Evento de acción.
+     * @throws IOException Si hay un error al cargar la vista.
+     */
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado4.fxml"));
@@ -56,12 +70,20 @@ public class CancelarCompraController implements Initializable {
         s.setTitle("ArmaTuHelado4");         
         s.show();
     }
-
+    
+    /**
+     * Maneja el evento de aceptar y sale de la aplicación.
+     *
+     * @param event Evento de acción.
+     */
     @FXML
     void aceptar(ActionEvent event) {
         Platform.exit();
     }
  
+    /**
+     * Muestra una imagen en el ImageView `imgCancelar`.
+     */
     public void mostrarImg(){        
         try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
             Image image = new Image(input,340,230,false,false);

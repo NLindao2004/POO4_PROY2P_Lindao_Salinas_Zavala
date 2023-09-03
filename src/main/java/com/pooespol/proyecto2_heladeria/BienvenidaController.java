@@ -27,24 +27,39 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista Bienvenida.fxml.
  */
 public class BienvenidaController implements Initializable {
 
-
+    /**
+     * ImageView para mostrar una imagen de bienvenida.
+     */
     @FXML
     private ImageView imgWelcome;
+    /**
+     * Etiqueta para mostrar un mensaje de bienvenida personalizado.
+     */
     @FXML
     private Label lblWelcome;
+    /**
+     * Botón para acceder a la vista de ubicaciones de locales.
+     */
     @FXML
     private Button btnLocales;
+    /**
+     * Botón para acceder a la vista de armar un helado.
+     */
     @FXML
     private Button btnPedido;
+    
+    
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     *
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,7 +67,11 @@ public class BienvenidaController implements Initializable {
         mostrarImg();
         msjWelcome();
         mostarPopUp();
-    }    
+    }
+
+    /**
+     * Muestra una imagen en el ImageView `imgWelcome`.
+     */
     public void mostrarImg(){        
             try(FileInputStream  input = new FileInputStream (Principal.path+"heladoRosa.jpg")){
                 Image image = new Image(input,730,530,false,false);
@@ -64,7 +83,12 @@ public class BienvenidaController implements Initializable {
 
             }
     }
-
+    
+     /**
+     * Abre una ventana para encontrar locales.
+     *
+     * @throws IOException Si hay un error al cargar la vista.
+     */
     @FXML
     private void encuentraLocales() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Ubicaciones.fxml"));
@@ -76,7 +100,12 @@ public class BienvenidaController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
+    
+    /**
+     * Abre una ventana para armar un pedido de helado.
+     *
+     * @throws IOException Si hay un error al cargar la vista.
+     */
     @FXML
     private void pedido() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("ArmaTuHelado1.fxml"));
@@ -89,14 +118,18 @@ public class BienvenidaController implements Initializable {
     }
     
     
-    
+    /**
+     * Muestra un mensaje de bienvenida personalizado.
+     */
     public void msjWelcome(){
         
         lblWelcome.setText("Bienvenido "+InicioController.name);
     }
 
     
-    
+    /**
+     * Muestra un ListView en una ventana emergente que se actualiza periódicamente.
+     */
     public void mostarPopUp(){
         Stage stage = new Stage();
         HBox hb = new HBox();

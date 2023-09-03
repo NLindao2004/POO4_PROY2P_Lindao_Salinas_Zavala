@@ -26,34 +26,57 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * Controlador para la vista Inicio.fxml.
  */
 public class InicioController implements Initializable {
-
+    
+    /**
+     * Almacena el nombre del usuario autenticado.
+     */
     public static String name;
+    /**
+     * ImageView para mostrar una imagen.
+     */
     @FXML
     private ImageView imgInicio;
+    /**
+     * Botón para iniciar sesión.
+     */
     @FXML
     private Button btnLogin;
+    /**
+     * Campo de texto para el nombre de usuario.
+     */
     @FXML
     private TextField user;
+    /**
+     *Campo de texto para la contraseña.
+     */
     @FXML
     private PasswordField password;
+    /**
+     * Etiqueta para mostrar mensaje de confirmacion al usuario.
+     */
     @FXML
     private Label message;
 
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador.
+     *
+     * @param url Ubicación del archivo FXML.
+     * @param rb  Recursos utilizados para la inicialización.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         mostrarImg();
     }    
-        
+    
+    /**
+     * Muestra una imagen en el ImageView.
+     */
     public void mostrarImg(){        
             try(FileInputStream  input = new FileInputStream (Principal.path+"inicio3.jpg")){
                 Image image = new Image(input,730,530,false,false);
@@ -65,7 +88,9 @@ public class InicioController implements Initializable {
             }
     }
     
-
+    /**
+     * Maneja el evento de inicio de sesión.
+     */
     @FXML
     private void login(){
         if (user.getText().isEmpty() || password.getText().isEmpty()) {
@@ -77,8 +102,12 @@ public class InicioController implements Initializable {
         }
     }
     
-
-  public boolean validation() {
+    /**
+     * Valida las credenciales del usuario.
+     *
+     * @return true si las credenciales son válidas, false de lo contrario.
+     */
+    public boolean validation() {
         ArrayList<Usuario> lista = Usuario.cargarUsuarios();
         for (Usuario u : lista) {
             if ((user.getText().equals(u.getUsuario())) && (password.getText().equals(u.getContrasenia()))) {
@@ -90,6 +119,9 @@ public class InicioController implements Initializable {
         return false;
     }
     
+     /**
+     * Redirige a la vista de bienvenida después de iniciar sesión con éxito.
+     */
     public void Bienvenida() {
         try {
             FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("Bienvenida.fxml"));

@@ -25,21 +25,34 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+
+
 /**
- * FXML Controller class
- *
- * @author PC.1
+ * La clase UbicacionesController es el controlador de la vista de ubicaciones.
+ * Se encarga de mostrar iconos en el mapa y gestionar la selección de ubicaciones.
  */
 public class UbicacionesController implements Initializable {
-
+    
+    /**
+     * Panel que contiene los iconos de ubicación en el mapa.
+     */
     @FXML
     private Pane rootUbicaciones;
-    
-    private boolean bandera=true;
-    
-    private Thread inicio;
     /**
-     * Initializes the controller class.
+     * Variable para saber cuando la ventana fue cerrada e interrumpir el proceso(hilo)
+     */
+    private boolean bandera=true;
+    /**
+     *Hilo para mostrar los iconos de ubicación.
+     */
+    private Thread inicio;
+   
+    /**
+     * Inicializa el controlador de la vista de ubicaciones.
+     *
+     * @param url       La URL base para cargar la vista (no utilizado en este caso).
+     * @param rb Los recursos (no utilizado en este caso).
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,6 +61,9 @@ public class UbicacionesController implements Initializable {
         
     }    
     
+    /**
+     * Inicia la tarea para mostrar los iconos de ubicación.
+     */
     public void iniciarTarea(){
         inicio = new Thread(()->{
             mostrarIcono();
@@ -56,6 +72,11 @@ public class UbicacionesController implements Initializable {
        
     }
     
+    /**
+     * Obtiene una imagen para los iconos de ubicación.
+     *
+     * @return La imagen del icono de ubicación.
+     */
     public Image obtenerImagen(){
         Image img=null;
         try (FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
@@ -66,6 +87,9 @@ public class UbicacionesController implements Initializable {
         return img;
     }
     
+    /**
+     * Muestra los iconos de ubicación en el mapa y gestiona su selección.
+     */
     public void mostrarIcono() {
             ArrayList<Local> lista = Local.cargarLocales();
             Image img=obtenerImagen();
@@ -102,6 +126,9 @@ public class UbicacionesController implements Initializable {
             }
     }
     
+    /**
+     * Muestra la escena de detalle de ubicación.
+     */
     public void mostrarEscena() {
     
         FXMLLoader fxmlloader = new FXMLLoader(Principal.class.getResource("DetalleUbicacion.fxml"));
