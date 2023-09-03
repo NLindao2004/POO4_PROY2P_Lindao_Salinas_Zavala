@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import com.pooespol.proyecto2_heladeria.Principal;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -44,7 +45,7 @@ public class Usuario {
      */
     public static ArrayList<Usuario> cargarUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList();
-        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(Principal.pathFiles+"usuarios.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] lista = linea.split(",");

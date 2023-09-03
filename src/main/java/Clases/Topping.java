@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import com.pooespol.proyecto2_heladeria.Principal;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -38,7 +39,7 @@ public class Topping {
      */
     public static ArrayList<Topping> cargarSabores() {
         ArrayList<Topping> toppings = new ArrayList();
-        try (BufferedReader br = new BufferedReader(new FileReader("toppings.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(Principal.pathFiles+"toppings.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] lista = linea.split(",");

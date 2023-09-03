@@ -78,7 +78,7 @@ public class InicioController implements Initializable {
      * Muestra una imagen en el ImageView.
      */
     public void mostrarImg(){        
-            try(FileInputStream  input = new FileInputStream (Principal.path+"inicio3.jpg")){
+            try(FileInputStream  input = new FileInputStream (Principal.pathImages+"inicio3.jpg")){
                 Image image = new Image(input,730,530,false,false);
                 imgInicio.setImage(image);
             }catch(FileNotFoundException fn){

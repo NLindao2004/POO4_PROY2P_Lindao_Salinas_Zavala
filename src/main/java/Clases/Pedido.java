@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import com.pooespol.proyecto2_heladeria.Principal;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -51,7 +52,7 @@ public class Pedido implements Pagable, Serializable {
      * @param p El pedido a guardar.
      */
     public static void guardarPedido(Pedido p) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("pedidos.txt", true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Principal.pathFiles+"pedidos.txt", true))) {
             bw.write(p.idPedido + "," + p.nombreCliente + "," + String.valueOf(p.precio) + "\n");
             System.out.println("Pedido guardado con éxito");
             bw.close();
@@ -65,7 +66,7 @@ public class Pedido implements Pagable, Serializable {
      * @param p El pedido a serializar.
      */
     public static void serealizarPedido(Pedido p) {
-        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("pedido" + p.idPedido + ".bin"))) {
+        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(Principal.pathFiles+"pedido" + p.idPedido + ".bin"))) {
             output.writeObject(p);
             System.out.println("Pedido serializado con éxito");
             output.close();
@@ -137,7 +138,7 @@ public class Pedido implements Pagable, Serializable {
      */
     @Override
     public void generarTransacción(Pago p) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("pagos.txt", true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Principal.pathFiles+"pagos.txt", true))) {
             bw.write(p.getIdPago() + "," + p.getIdPedido() + "," + p.getNombreCliente() + "," + String.valueOf(p.getTotalPagar()) + "," + p.getFecha() + "," + p.getTipo() + "\n");
             System.out.println("Transacción de pago generada con éxito");
             bw.close();

@@ -21,7 +21,8 @@ public class Principal extends Application{
     /**
      * La ruta base para los recursos de la aplicación.
      */
-    public static String path = "src/main/resources/com/pooespol/proyecto2_heladeria/";
+    public static String pathFiles = "files/";
+    public static String pathImages = "images/";
 
     /**
      * El método start es el punto de inicio de la aplicación JavaFX.

@@ -8,6 +8,7 @@
  */
 package Clases;
 
+import com.pooespol.proyecto2_heladeria.Principal;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -43,7 +44,7 @@ public class Base {
      */
     public static ArrayList<Base> cargarBase(){
         ArrayList<Base> bases = new ArrayList();
-        try (BufferedReader br = new BufferedReader(new FileReader("bases.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(Principal.pathFiles+"bases.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Dividir la línea en tipoBase y precio utilizando la coma como separador.

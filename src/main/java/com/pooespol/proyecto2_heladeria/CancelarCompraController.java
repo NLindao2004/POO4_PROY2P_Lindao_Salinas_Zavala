@@ -85,7 +85,7 @@ public class CancelarCompraController implements Initializable {
      * Muestra una imagen en el ImageView `imgCancelar`.
      */
     public void mostrarImg(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"escena5.jpg")){
             Image image = new Image(input,340,230,false,false);
             imgCancelar.setImage(image);             
         }catch(FileNotFoundException fn){

@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import com.pooespol.proyecto2_heladeria.Principal;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -44,7 +45,7 @@ public class Local {
     public static ArrayList<Local> cargarLocales(){
         // Lista para almacenar los locales cargados desde el archivo.
         ArrayList<Local> locales = new ArrayList();
-        try (BufferedReader br = new BufferedReader(new FileReader("locales.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(Principal.pathFiles+"locales.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Dividir la línea en partes utilizando la coma como separador.

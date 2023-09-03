@@ -40,6 +40,11 @@ public class UbicacionesController implements Initializable {
     @FXML
     private Pane rootUbicaciones;
     /**
+     * Contenedor para establecer una imagen.
+     */
+    @FXML
+    private ImageView imgviewFondo;
+    /**
      * Variable para saber cuando la ventana fue cerrada e interrumpir el proceso(hilo)
      */
     private boolean bandera=true;
@@ -47,6 +52,8 @@ public class UbicacionesController implements Initializable {
      *Hilo para mostrar los iconos de ubicación.
      */
     private Thread inicio;
+    
+    
    
     /**
      * Inicializa el controlador de la vista de ubicaciones.
@@ -56,7 +63,7 @@ public class UbicacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        setImagenFondo();
         iniciarTarea();
         
     }    
@@ -77,9 +84,9 @@ public class UbicacionesController implements Initializable {
      *
      * @return La imagen del icono de ubicación.
      */
-    public Image obtenerImagen(){
+    public Image obtenerIcono(){
         Image img=null;
-        try (FileInputStream file = new FileInputStream(Principal.path + "icono.png")) {
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "icono.png")) {
                 img = new Image(file, 45, 45, false, false);
             }catch(IOException io){
                 System.out.println(io.getMessage());
@@ -88,11 +95,24 @@ public class UbicacionesController implements Initializable {
     }
     
     /**
+     * Obtiene una imagen para el ponerla de fondo.
+     */
+    public void setImagenFondo(){
+        
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "mapa2.png")) {
+                img = new Image(file, 730, 495, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        imgviewFondo.setImage(img);
+    }
+    /**
      * Muestra los iconos de ubicación en el mapa y gestiona su selección.
      */
     public void mostrarIcono() {
             ArrayList<Local> lista = Local.cargarLocales();
-            Image img=obtenerImagen();
+            Image img=obtenerIcono();
 
             for (Local l : lista) {
                     ImageView smallImageView = new ImageView(img);

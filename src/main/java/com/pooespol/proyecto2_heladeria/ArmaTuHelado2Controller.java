@@ -117,7 +117,7 @@ public class ArmaTuHelado2Controller implements Initializable {
      * Método para mostrar la imagen en la interfaz.
      */
     public void mostrarImg(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"escena5.jpg")){
             Image image = new Image(input, 730, 530, false, false);
             imgArmaTuHelado2.setImage(image);             
         } catch(FileNotFoundException fn) {

@@ -6,6 +6,7 @@ package com.pooespol.proyecto2_heladeria;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -50,6 +51,11 @@ public class DetalleUbicacionController implements Initializable {
      */
     @FXML
     private Pane rootPopUp;
+    /**
+     * Contenedor para establecer una imagen.
+     */
+    @FXML
+    private ImageView imgviewFondo;
  
     /**
      * Hilo para la actualización del tiempo de cierre.
@@ -77,6 +83,7 @@ public class DetalleUbicacionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setImagenFondo();
         iniciarTarea();
           
     
@@ -91,6 +98,20 @@ public class DetalleUbicacionController implements Initializable {
     private void salir(ActionEvent event) {
         Stage s = (Stage)btnSalir.getScene().getWindow();
         s.close();
+    }
+    
+    /**
+     * Obtiene una imagen para el ponerla de fondo.
+     */
+    public void setImagenFondo(){
+        
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "heladoRosa.jpg")) {
+                img = new Image(file, 300, 250, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        imgviewFondo.setImage(img);
     }
     
      /**

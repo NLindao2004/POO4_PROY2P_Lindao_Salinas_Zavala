@@ -127,7 +127,7 @@ public class ArmaTuHelado4Controller implements Initializable {
      * Muestra una imagen en la vista.
      */
     public void mostrarImg(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"escena5.jpg")){
             Image image = new Image(input,730,530,false,false);
             imgArmaTuHelado4.setImage(image);             
         }catch(FileNotFoundException fn){

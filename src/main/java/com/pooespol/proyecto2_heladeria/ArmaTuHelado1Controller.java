@@ -114,16 +114,74 @@ public class ArmaTuHelado1Controller implements Initializable {
      */
     @FXML 
     private Label message;
-
+    /**
+     * Contenedor para cargar imagen de de base yogurt.
+     */
+    @FXML 
+    private ImageView imgYogurt;
+     /**
+     * Contenedor para cargar imagen de base helado.
+     */
+    @FXML 
+    private ImageView imgHelado;
+     /**
+     * Contenedor para cargar imagen de base Vegano.
+     */
+    @FXML 
+    private ImageView imgVegano;
     /**
      * Inicializa el controlador.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mostrarImg();
+        setImgYogurt();
+        setImgHelado();
+        setImgVegano();
         precios();
     }    
-
+    
+    /**
+     * Método para establecer la imagen de la base Yogurt.
+     */
+    private void setImgYogurt() {
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "yogurt.jpg")) {
+                img = new Image(file, 73, 101, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        imgYogurt.setImage(img);
+    }
+    
+    /**
+     * Método para establecer la imagen de la base Helado.
+     */
+    private void setImgHelado() {
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "helado.jpg")) {
+                img = new Image(file, 70, 100, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        imgHelado.setImage(img);
+    }
+    
+    /**
+     * Método para establecer la imagen de la base Vegana.
+     */
+    private void setImgVegano() {
+        Image img=null;
+        try (FileInputStream file = new FileInputStream(Principal.pathImages + "heladoVegano1.jpg")) {
+                img = new Image(file, 70, 100, false, false);
+            }catch(IOException io){
+                System.out.println(io.getMessage());
+            } 
+        imgVegano.setImage(img);
+    }
+    
+    
+    
     /**
      * Método que se ejecuta al hacer clic en el botón "Continuar".
      * @param event El evento de acción.
@@ -192,10 +250,10 @@ public class ArmaTuHelado1Controller implements Initializable {
     }
     
     /**
-     * Método para mostrar la imagen en la interfaz.
+     * Método para mostrar la imagen de fondo en la interfaz.
      */
     public void mostrarImg(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"escena5.jpg")){
             Image image = new Image(input, 730, 530, false, false);
             imgArmaTuHelado1.setImage(image);             
         } catch(FileNotFoundException fn) {

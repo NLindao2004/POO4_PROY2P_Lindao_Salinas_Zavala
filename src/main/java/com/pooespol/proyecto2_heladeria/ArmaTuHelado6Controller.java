@@ -73,7 +73,7 @@ public class ArmaTuHelado6Controller implements Initializable {
      * Muestra una imagen en el ImageView `imgArmaTuHelado6`.
      */
     public void mostrarImg(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"escena5.jpg")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"escena5.jpg")){
             Image image = new Image(input,730,530,false,false);
             imgArmaTuHelado6.setImage(image);             
         }catch(FileNotFoundException fn){
@@ -88,7 +88,7 @@ public class ArmaTuHelado6Controller implements Initializable {
      * Muestra una imagen en el ImageView `img`.
      */
     public void mostrarImg2(){        
-        try(FileInputStream  input = new FileInputStream (Principal.path+"Carrito_Helados.gif")){
+        try(FileInputStream  input = new FileInputStream (Principal.pathImages+"Carrito_Helados.gif")){
             Image image = new Image(input);
             img.setImage(image);             
         }catch(FileNotFoundException fn){

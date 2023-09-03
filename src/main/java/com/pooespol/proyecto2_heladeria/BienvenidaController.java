@@ -73,7 +73,7 @@ public class BienvenidaController implements Initializable {
      * Muestra una imagen en el ImageView `imgWelcome`.
      */
     public void mostrarImg(){        
-            try(FileInputStream  input = new FileInputStream (Principal.path+"heladoRosa.jpg")){
+            try(FileInputStream  input = new FileInputStream (Principal.pathImages+"heladoRosa.jpg")){
                 Image image = new Image(input,730,530,false,false);
                 imgWelcome.setImage(image);
                 imgWelcome.setOpacity(0.8);
@@ -148,7 +148,7 @@ public class BienvenidaController implements Initializable {
             while (true) {
                 try {
                     ArrayList<String> lista = new ArrayList<>();
-                    try (BufferedReader br = new BufferedReader(new FileReader("pagos.txt"))) {
+                    try (BufferedReader br = new BufferedReader(new FileReader(Principal.pathFiles+"pagos.txt"))) {
                         String linea;
                         while ((linea = br.readLine()) != null) {
                             String[] cadena = linea.split(",");
