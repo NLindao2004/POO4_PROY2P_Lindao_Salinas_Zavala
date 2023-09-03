@@ -20,3 +20,10 @@
 652,Fernando Zavala,3.75
 64,Fernando Zavala,3.75
 453,Fernando Zavala,4.55
+330,Fernando Zavala,4.25
+494,Fernando Zavala,4.25
+831,Fernando Zavala,5.5
+902,Fernando Zavala,4.25
+942,Fernando Zavala,4.25
+797,Fernando Zavala,4.75
+824,Fernando Zavala,4.75

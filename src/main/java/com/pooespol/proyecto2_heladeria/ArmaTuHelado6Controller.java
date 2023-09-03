@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -23,6 +24,10 @@ import javafx.stage.Stage;
  */
 public class ArmaTuHelado6Controller implements Initializable {
     
+    
+    private boolean bandera=true;
+    
+    Thread hilo;
     /**
      * ImageView para mostrar una imagen.
      */
@@ -43,6 +48,11 @@ public class ArmaTuHelado6Controller implements Initializable {
      */
     @FXML
     private Label lblPedido;
+    /**
+     * Etiqueta para obtener el root de esta escena.
+     */
+    @FXML
+    private Pane rootFinal;
     
     /**
      * Inicializa el controlador.
@@ -93,36 +103,47 @@ public class ArmaTuHelado6Controller implements Initializable {
      * Ejecuta un hilo que cuenta hacia atrás y cierra la ventana después de cierto tiempo.
      */
     public void hilo() {
-        Thread hilo = new Thread(() -> {
+        hilo = new Thread(() -> {
             for (int i = 5; i > 0; i--) { 
                 final int finalI = i;
 
                 Platform.runLater(() -> {
+                    Stage stage=(Stage) rootFinal.getScene().getWindow();
+                    stage.setOnCloseRequest((evento)->{
+                        hilo.interrupt();
+                        bandera=false;});
                     lblCierre.setText("Esta ventana se cerrará en " + finalI + " segundos");
+                });
+                if(bandera){
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (InterruptedException e) {
+
+                        System.out.println(e.getMessage());
+                    }
+                }else{
+                    break;
+                }
+            }
+            
+            if(bandera){
+                Platform.runLater(() -> {
+                    lblCierre.setText("Cerrando ventana...");
                 });
 
                 try {
                     Thread.sleep(1000); 
                 } catch (InterruptedException e) {
-                   
                     e.printStackTrace();
                 }
+
+                Platform.runLater(() -> {
+                    Stage stage = (Stage) lblCierre.getScene().getWindow();
+                    stage.close();
+                });
+            }else{
+                    
             }
-
-            Platform.runLater(() -> {
-                lblCierre.setText("Cerrando ventana...");
-            });
-
-            try {
-                Thread.sleep(1000); 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            Platform.runLater(() -> {
-                Stage stage = (Stage) lblCierre.getScene().getWindow();
-                stage.close();
-            });
         });
 
         hilo.start();

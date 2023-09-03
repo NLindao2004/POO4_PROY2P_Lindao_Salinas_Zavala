@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" stylesheets="@ArmaTuHelado6.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.ArmaTuHelado6Controller">
+<Pane fx:id="rootFinal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" stylesheets="@ArmaTuHelado6.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.ArmaTuHelado6Controller">
    <children>
       <ImageView fx:id="imgArmaTuHelado6" fitHeight="530.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblTitulo" layoutX="62.0" layoutY="32.0" text="Tu orden se ha generado">

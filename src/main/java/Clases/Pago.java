@@ -4,6 +4,11 @@
  */
 package Clases;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  * La clase Pago representa la información de un pago realizado.
  */
@@ -137,4 +142,6 @@ public class Pago {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+   
 }

@@ -141,6 +141,7 @@ public class BienvenidaController implements Initializable {
         listView.setItems(items);
 
         stage.setScene(scene);
+        stage.setResizable(true);
         stage.show();
 
         Thread actualizarThread = new Thread(() -> {

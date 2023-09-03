@@ -142,6 +142,7 @@ public class UbicacionesController implements Initializable {
         Stage stage= new Stage();
         stage.setScene(scene);
         stage.setTitle("Detalle Ubicación");
+        stage.setResizable(false);
         stage.show();
     
         

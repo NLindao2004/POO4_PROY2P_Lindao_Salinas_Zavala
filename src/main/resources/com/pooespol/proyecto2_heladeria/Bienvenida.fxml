@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="730.0" stylesheets="@Bienvenida.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.BienvenidaController">
+<Pane fx:id="rootBienvenida" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="730.0" stylesheets="@Bienvenida.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto2_heladeria.BienvenidaController">
    <children>
       <ImageView fx:id="imgWelcome" fitHeight="530.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" prefHeight="530.0" prefWidth="730.0" spacing="20.0">
