@@ -95,7 +95,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                            <graphic>
-                              <ImageView fx:id="imgYogurt" fitHeight="101.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgYogurt" fitHeight="101.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
                      </children>

@@ -140,7 +140,7 @@ public class DetalleUbicacionController implements Initializable {
                 }
                 lbl1.setText(nombre);
                 lbl2.setText(horario);
-                lblTiempo.setText(t); 
+                lblTiempo.setText("Cerrando en "+t+" segundos..."); 
             });
             if(bandera){
                 try{

@@ -109,7 +109,5 @@ public class Base {
         return "Base {tipoBase=" + this.tipoBase + ", precio=" + this.precio + "}";
     }
     
-    public static void main(String[] args) {
-        System.out.println(cargarBase());
-    }
+  
 }

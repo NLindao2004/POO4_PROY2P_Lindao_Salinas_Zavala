@@ -144,7 +144,5 @@ public class Local {
         return "Local {coordenadaX=" + this.coordenadaX + ", coordenadaY=" + this.coordenadaY + ", nombre=" + this.nombre + ", horario=" + this.horario +"}";
     }
     
-    public static void main(String[] args) {
-        System.out.println(cargarLocales());
-    }
+  
 }

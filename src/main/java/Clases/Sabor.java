@@ -104,9 +104,5 @@ public class Sabor {
         return this.tipoSabor + " - " + this.precio;
     }
     
-    public static void main(String[] args) {
-        double n = 2.00;
-        String formatted = String.format("%.2f", n);
-        System.out.println("cadena:" + formatted);
-    }
+   
 }
